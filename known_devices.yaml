@@ -1,0 +1,123 @@
+﻿#--------------------------------------------------------------------
+#	Home Assistant - Know Devices
+#--------------------------------------------------------------------
+#	Author		:	Flávio Pinho
+#	Date		:	2018-01-20
+#	Description :	Set configuration to Know Devices
+#--------------------------------------------------------------------
+
+flavio_phone:
+  name: Flávio Pinho
+  hide_if_away: false
+  mac: !secret mac_fp 
+  picture: /local/images/flavio_pinho.jpg
+  track: true
+  vendor: SAMSUNG ELECTRO-MECHANICS(THAILAND)
+
+flavio_tracker:
+  hide_if_away: false
+  icon:
+  mac:
+  name: flavio tracker
+  picture:
+  track: true
+  vendor:
+
+pi_flavio_owntrack:
+  hide_if_away: false
+  icon:
+  mac:
+  name: pi
+  picture:
+  track: true
+  vendor:
+
+smart_camera:
+  hide_if_away: false
+  icon:
+  mac: !secret mac_cam
+  name: Smart Camera
+  picture:
+  track: true
+  vendor: unknown
+
+pipplware:
+  hide_if_away: false
+  icon:
+  mac: !secret mac_pi
+  name: PiPplware
+  picture:
+  track: true
+  vendor: unknown
+
+xp1000:
+  hide_if_away: false
+  icon:
+  mac: !secret mac_box
+  name: Octagon SF8 HD
+  picture:
+  track: true
+  vendor: unknown
+
+vacuum:
+  hide_if_away: false
+  icon:
+  mac: !secret mac_vac
+  name: Vacuum
+  picture:
+  track: true
+  vendor: XIAOMI Electronics,CO.,LTD
+
+light_rgb:
+  hide_if_away: false
+  icon:
+  mac: !secret mac_rgb
+  name: Light RGB
+  picture:
+  track: true
+  vendor: XIAOMI Electronics,CO.,LTD
+
+xiaomi_gateway:
+  hide_if_away: false
+  icon:
+  mac: !secret mac_gt
+  name: Xiaomi Gateway
+  picture:
+  track: true
+  vendor: XIAOMI Electronics,CO.,LTD
+
+localhost:
+  hide_if_away: false
+  icon:
+  mac: !secret mac_lh
+  name: localhost
+  picture:
+  track: false
+  vendor: Technicolor
+
+flaviopinhodt_eth:
+  hide_if_away: false
+  icon:
+  mac: !secret mac_eth
+  name: FlavioPinho-DT
+  picture:
+  track: true
+  vendor: ASUSTek COMPUTER INC.
+
+flaviopinhodt_wifi:
+  hide_if_away: false
+  icon:
+  mac: 64:70:02:29:29:0E
+  name: !secret mac_wifi
+  picture:
+  track: true
+  vendor: unknown
+
+fpinho:
+  hide_if_away: false
+  icon:
+  mac: !secret mac_rpi
+  name: FPinho Raspberry
+  picture:
+  track: true
+  vendor: Raspberry Pi Foundation

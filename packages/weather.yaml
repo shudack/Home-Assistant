@@ -1,0 +1,138 @@
+﻿#--------------------------------------------------------------------
+#	Home Assistant - Weather
+#--------------------------------------------------------------------
+#	Author		:	Flávio Pinho
+#	Date		:	2018-01-17
+#	Description :	Set configuration to Weather
+#--------------------------------------------------------------------
+
+sensor:
+  - platform: darksky
+    api_key: !secret darksky_api
+    forecast:
+      - 1
+    monitored_conditions:
+      - summary
+      - wind_speed
+      - temperature
+      - temperature_max
+      - temperature_min
+      - humidity
+      - precip_intensity
+      - precip_probability
+      - uv_index
+
+  - platform: template
+    sensors:
+      estado_do_tempo:
+        friendly_name: 'Céu'
+        value_template: >
+          {%- if is_state('sensor.dark_sky_summary', 'Partly Cloudy') -%}
+            Parcialmente nublado
+          {%- elif is_state('sensor.dark_sky_summary', 'Clear') -%}
+            Limpo
+          {%- elif is_state('sensor.dark_sky_summary', 'Rain') -%}
+            Chuvoso
+          {%- elif is_state('sensor.dark_sky_summary', 'Light Rain') -%}
+            Chuva fraca
+          {%- elif is_state('sensor.dark_sky_summary', 'Mostly Cloudy') -%}
+            Muito nublado
+          {%- elif is_state('sensor.dark_sky_summary', 'Drizzle') -%}
+            Chuviscos
+          {%- elif is_state('sensor.dark_sky_summary', 'Overcast') -%}
+            Nublado
+          {%- elif is_state('sensor.dark_sky_summary', 'Breezy and Overcast') -%}
+            Vento e nublado
+          {%- elif is_state('sensor.dark_sky_summary', 'Rain and Breezy') -%}
+            Chuva e vento fraco
+          {%- elif is_state('sensor.dark_sky_summary', 'Rain and Windy') -%}
+            Chuva e vento
+          {%- elif is_state('sensor.dark_sky_summary', 'Breezy and Mostly Cloudy') -%}
+            Vento fraco e algumas nuvens
+          {%- endif -%}
+        icon_template: >
+          {%- if is_state('sensor.dark_sky_summary', 'Partly Cloudy') -%}
+            mdi:weather-cloudy
+          {%- elif is_state('sensor.dark_sky_summary', 'Clear') -%}
+            mdi:weather-sunny
+          {%- elif is_state('sensor.dark_sky_summary', 'Rain') -%}
+            mdi:weather-pouring
+          {%- elif is_state('sensor.dark_sky_summary', 'Light Rain') -%}
+            mdi:weather-rainy
+          {%- elif is_state('sensor.dark_sky_summary', 'Mostly Cloudy') -%}
+            mdi:weather-fog
+          {%- elif is_state('sensor.dark_sky_summary', 'Drizzle') -%}
+            mdi:weather-rainy
+          {%- elif is_state('sensor.dark_sky_summary', 'Overcast') -%}
+            mdi:weather-cloudy
+          {%- elif is_state('sensor.dark_sky_summary', 'Breezy and Overcast') -%}
+            mdi:weather-windy
+          {%- elif is_state('sensor.dark_sky_summary', 'Rain and Breezy') -%}
+            mdi:weather-windy-variant
+          {%- elif is_state('sensor.dark_sky_summary', 'Rain and Windy') -%}
+            mdi:weather-windy-variant
+          {%- elif is_state('sensor.dark_sky_summary', 'Breezy and Mostly Cloudy') -%}
+            mdi:weather-windy-variant
+          {%- endif -%}
+
+group:
+  Tempo:
+    name: Ambiente Exterior
+    entities:
+      - sensor.estado_do_tempo
+      - sensor.dark_sky_wind_speed
+      - sensor.dark_sky_temperature
+      - sensor.dark_sky_daily_high_temperature
+      - sensor.dark_sky_daily_low_temperature
+      - sensor.dark_sky_humidity
+      - sensor.dark_sky_precip_probability
+      - sensor.dark_sky_uv_index
+
+automation:
+  - alias: Resumo do Tempo pela Manhã
+    hide_entity: true
+    trigger:
+      platform: time
+      at: 08:30:00
+    condition:
+      - condition: state
+        entity_id: input_boolean.holidays
+        state: 'off'
+    action:
+      - service: notify.my_pushbullet
+        data:
+          message: "Bom dia, estão {{ states.sensor.temperature_158d000201f774.state }} graus em casa. Hoje o céu está {{ states.sensor.estado_do_tempo.state }}, estão neste momento {{ states.sensor.dark_sky_temperature.state }} graus, e {{ states.sensor.dark_sky_humidity.state }}% de humidade. A temperatura máxima vai ser de {{ states.sensor.dark_sky_daily_high_temperature.state }} graus e a mínima de {{ states.sensor.dark_sky_daily_low_temperature.state }} graus. Existe {{ states.sensor.dark_sky_precip_probability.state }}% de probabilidade de chover hoje.{% if states('sensor.dark_sky_precip_probability') | int > 50 %} Não te esqueças de levar o guarda-chuva. Tem um belo dia de chuva ;){% else %} Tem um excelente dia.{% endif %}"
+
+  - alias: Chover Antes de Sair do Trabalho
+    hide_entity: true
+    trigger:
+      - platform: time
+        at: '17:55:00'
+    condition:
+      - condition: state
+        entity_id: device_tracker.flavio_tracker
+        state: 'Trabalho'
+      - condition: numeric_state
+        entity_id: sensor.dark_sky_precip_intensity
+        above: '0.01'
+    action:
+      - service: notify.my_pushbullet
+        data:
+          message: "Prepara-te que vai chover {{ states.sensor.dark_sky_precip_intensity.state }} mm"
+
+  - alias: Chove Amanhã
+    hide_entity: true
+    trigger:
+      - platform: time
+        at: '23:00:00'
+    condition:
+      - condition: numeric_state
+        entity_id: sensor.dark_sky_precip_probability_1
+        above: '20'
+      - condition: state
+        entity_id: input_boolean.holidays
+        state: 'off'
+    action:
+      - service: notify.my_pushbullet
+        data:
+          message: "Há {{ states.sensor.dark_sky_precip_probability_1.state }}% de probabilidadede chover amanhã."

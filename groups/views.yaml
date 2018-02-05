@@ -1,0 +1,55 @@
+#-------------------------------------------
+#	Home Assistant - Views
+#-------------------------------------------
+
+default_view:
+  name: Home
+  icon: mdi:home
+  view: yes
+  entities:
+    - group.family
+    - group.travels
+    - group.location
+    - group.health
+
+seguranca_view:
+  name: Segurança
+  view: yes
+  icon: mdi:security-home
+  entities:
+    - group.holidays
+    - group.door
+    - group.alarm_clock
+    - group.devices
+    - group.all_automations
+
+interior_view:
+  name: Interior
+  view: yes
+  icon: mdi:home-account
+  entities:
+    - group.lights
+    - group.room
+    - group.xiaomi_gateway
+    - group.media_player
+    - group.vacuum
+
+exterior_view:
+  name: Exterior
+  view: yes
+  icon: mdi:home-map-marker
+  entities:
+    - group.tempo
+
+outros_view:
+  name: Sistema
+  view: yes
+  icon: mdi:settings
+  entities:
+    - group.datetime
+    - group.estado_ha
+    - group.wake_on_lan
+    - group.ups
+    - group.network
+    - group.transmission
+    - group.smart_power

@@ -1,0 +1,29 @@
+﻿#--------------------------------------------------------------------
+#	Home Assistant - Media Player
+#--------------------------------------------------------------------
+#	Author		:	Flávio Pinho
+#	Date		:	2018-01-22
+#	Description :	Set configuration to Media Player
+#--------------------------------------------------------------------
+
+media_player:
+  - platform: enigma
+    host: !secret enigma_host
+    port: !secret enigma_port
+    username: !secret enigma_username
+    password: !secret enigma_password
+
+  - platform: plex
+    entity_namespace: 'plex'
+    include_non_clients: true
+    scan_interval: 5
+    show_all_controls: false
+    use_custom_entity_ids: true
+    use_episode_art: true
+
+group:
+  Media Player:
+    name: Octagon SF8 HD
+    entities:
+      - media_player.xp1000
+      - media_player.plex

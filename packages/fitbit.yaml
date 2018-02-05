@@ -1,0 +1,50 @@
+﻿#--------------------------------------------------------------------
+#	Home Assistant - Fitbit
+#--------------------------------------------------------------------
+#	Author		:	Flávio Pinho
+#	Date		:	2018-01-17
+#	Description :	Set configuration to Fitbit
+#--------------------------------------------------------------------
+
+sensor:
+  - platform: fitbit
+    clock_format: 24H
+    monitored_resources:
+      - "activities/calories"
+      - "activities/distance"
+      - "activities/elevation"
+      - "activities/floors"
+      - "activities/steps"
+      - "devices/battery"
+
+  - platform: template
+    sensors:
+      fitbit_bateria:
+        friendly_name: 'Bateria'
+        value_template: >
+          {%- if is_state('sensor.charge_2_battery', 'High') -%}
+            Máxima
+          {%- elif is_state('sensor.charge_2_battery', 'Medium') -%}
+            Média
+          {%- elif is_state('sensor.charge_2_battery', 'Low') -%}
+            Baixa
+          {%- endif -%}
+        icon_template: >
+          {%- if is_state('sensor.charge_2_battery', 'High') -%}
+            mdi:battery
+          {%- elif is_state('sensor.charge_2_battery', 'Medium') -%}
+            mdi:battery-50
+          {%- elif is_state('sensor.charge_2_battery', 'Low') -%}
+            mdi:battery-10
+          {%- endif -%}
+
+group:
+  Health:
+    name: Saúde
+    entities:
+      - sensor.steps
+      - sensor.calories
+      - sensor.distance
+      - sensor.elevation
+      - sensor.floors
+      - sensor.fitbit_bateria

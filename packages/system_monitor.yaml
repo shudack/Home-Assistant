@@ -1,0 +1,102 @@
+﻿#--------------------------------------------------------------------
+#	Home Assistant - System Monitor
+#--------------------------------------------------------------------
+#	Author		:	Flávio Pinho
+#	Date		:	2018-01-17
+#	Description :	Set configuration to System Monitor
+#--------------------------------------------------------------------
+
+sensor:
+  - platform: systemmonitor
+    resources:
+      - type: disk_free
+        arg: /
+      - type: memory_free
+      - type: processor_use
+      - type: last_boot
+      - type: since_last_boot
+
+  - platform: uptime
+    name: Hassbian Last Boot
+    unit_of_measurement: hours
+
+  - platform: api_streams
+
+  - platform: template
+    sensors:
+      since_last_boot_templated:
+        value_template: >-
+          {%- if states.sensor.since_last_boot -%}
+            {%- set slb = states.sensor.since_last_boot.state.split(' ') -%}
+            {%- set count = slb | length -%}
+            {%- set hms = slb[count - 1] -%}
+            {%- set hms_split = hms.split(':') -%}
+            {%- set hours = hms_split[0] | int -%}
+            {%- set minutes = hms_split[1] | int -%}
+            {%- if count == 3 -%}
+              {%- set days = slb[0] | int -%}
+            {%- else -%}
+              {%- set days = 0 -%}
+            {%- endif -%}
+            {%- if days == 0 and hours == 0 and minutes == 0 -%}
+              Menos de 1 min
+            {%- else -%}
+              {%- if days > 0 -%}
+                {%- if days == 1 -%}
+                  1 dia
+                {%- else -%}
+                  {{ days }} dias
+                {%- endif -%}
+              {%- endif -%}
+              {%- if hours > 0 -%}
+                {%- if days > 0 -%}
+                  {{ ', ' }}
+                {%- endif -%}
+                {%- if hours == 1 -%}
+                  1 hora
+                {%- else -%}
+                  {{ hours }} horas
+                {%- endif -%}
+              {%- endif -%}
+              {%- if minutes > 0 -%}
+                {%- if days > 0 or hours > 0 -%}
+                  {{ ', ' }}
+                {%- endif -%}
+                {%- if minutes == 1 -%}
+                  1 min
+                {%- else -%}
+                  {{ minutes }} min
+                {%- endif -%}
+              {%- endif -%}
+            {%- endif -%}
+          {%- else -%}
+            n/a
+          {%- endif -%}
+
+group:
+  Estado HA:
+    name: Sistema HA
+    entities:
+      - script.restart_ha
+      - script.reboot_pi
+      - sensor.cpu_use
+      - sensor.ram_free
+      - sensor.disk_free_
+      - sensor.last_boot
+      - sensor.hassbian_last_boot
+      - sensor.since_last_boot_templated
+      - sensor.connected_clients
+
+script:
+  restart_ha:
+    alias: 'Reiniciar HA'
+    sequence:
+      - service: homeassistant.restart
+
+  reboot_pi:
+    alias: 'Reiniciar Pi'
+    sequence:
+      - service: shell_command.reboot_pi
+
+shell_command:
+  reboot_pi: sudo reboot

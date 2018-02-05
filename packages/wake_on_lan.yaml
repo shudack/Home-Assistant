@@ -1,0 +1,19 @@
+﻿#--------------------------------------------------------------------
+#	Home Assistant - Wake on Lan
+#--------------------------------------------------------------------
+#	Author		:	Flávio Pinho
+#	Date		:	2018-01-17
+#	Description :	Set configuration to Wake on Lan
+#--------------------------------------------------------------------
+
+switch:
+  - platform: wake_on_lan
+    mac_address: !secret wol_mac
+    name: "FLAVIOPINHO-PC"
+    host: !secret wol_host
+
+group:
+  Wake on Lan:
+    name: Wake-on-Lan
+    entities:
+      - switch.flaviopinhopc

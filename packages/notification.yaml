@@ -1,0 +1,18 @@
+﻿#--------------------------------------------------------------------
+#	Home Assistant - Notifications
+#--------------------------------------------------------------------
+#	Author		:	Flávio Pinho
+#	Date		:	2018-01-22
+#	Description :	Set configuration to Notifications
+#--------------------------------------------------------------------
+
+automation:
+  alias: 'Update Available Notifications'
+  hide_entity: true
+  trigger:
+    platform: state
+    entity_id: updater.updater
+  action:
+    service: notify.my_pushbullet
+    data:
+      message: 'O update para o Home Assistant está disponível para download.'

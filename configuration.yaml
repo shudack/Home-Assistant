@@ -1,0 +1,78 @@
+#-------------------------------------------
+#	Home Assistant Main Configuration File
+#-------------------------------------------
+
+homeassistant:
+  name: Home
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: 459
+  unit_system: metric
+  time_zone: Europe/Lisbon
+  customize: !include customize.yaml
+  packages: !include_dir_named packages
+
+config:
+
+recorder:
+  db_url: !secret my_sql_url
+
+frontend:
+  javascript_version: latest
+  extra_html_url:
+    - /local/custom_ui/state-card-custom-ui.html
+  extra_html_url_es5:
+    - /local/custom_ui/state-card-custom-ui-es5.html
+
+http:
+  api_password: !secret http_password
+  base_url: !secret base_url
+  ip_ban_enabled: True
+  login_attempts_threshold: 3
+
+updater:
+  include_used_components: true
+  #reporting: no
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+# Logger for hide in logs #
+logger:
+  default: warn
+  logs:
+    homeassistant.components.vacuum.xiaomi_miio: critical
+    miio.device: critical
+
+#-------------------------------------------
+#	Components
+#-------------------------------------------
+
+# Text to speech
+tts:
+  - platform: google
+    cache: true
+    cache_dir: /tmp/tts
+    time_memory: 300
+
+# Cloud
+#cloud:
+
+# Merge Named #
+
+group: !include_dir_merge_named groups

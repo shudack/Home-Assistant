@@ -1,0 +1,51 @@
+﻿#--------------------------------------------------------------------
+#	Home Assistant - Transmission
+#--------------------------------------------------------------------
+#	Author		:	Flávio Pinho
+#	Date		:	2018-01-17
+#	Description :	Set configuration to Transmission
+#--------------------------------------------------------------------
+
+sensor:
+  - platform: transmission
+    host: !secret transmission_host
+    port: !secret transmission_port
+    username: !secret transmission_username
+    password: !secret transmission_password
+    monitored_variables:
+      - 'current_status'
+      - 'download_speed'
+      - 'upload_speed'
+      - 'active_torrents'
+
+  - platform: template
+    sensors:
+      transmission_estado:
+        friendly_name: 'Estado'
+        value_template: >
+          {%- if is_state('sensor.transmission_status', 'idle') -%}
+            Inativo
+          {%- elif is_state('sensor.transmission_status', 'Downloading') -%}
+            A receber
+          {%- elif is_state('sensor.transmission_status', 'Seeding') -%}
+            A enviar
+          {%- elif is_state('sensor.transmission_status', 'Up/Down') -%}
+            Enviar/Receber
+          {%- endif -%}
+
+switch:
+  - platform: transmission
+    host: !secret transmission_host
+    port: !secret transmission_port
+    username: !secret transmission_username
+    password: !secret transmission_password
+
+group:
+  Transmission:
+    name: Transmission
+    entities:
+      - sensor.transmission_estado
+      - sensor.transmission_down_speed
+      - sensor.transmission_up_speed
+      - sensor.transmission_active_torrents
+      - switch.transmission_turtle_mode

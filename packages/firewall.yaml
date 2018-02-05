@@ -1,0 +1,23 @@
+﻿#--------------------------------------------------------------------
+#	Home Assistant - Firewall
+#--------------------------------------------------------------------
+#	Author		:	Flávio Pinho
+#	Date		:	2018-01-31
+#	Description :	Set configuration to Firewall
+#--------------------------------------------------------------------
+
+automation:
+  - alias: "Send Notification Upon Failed Login Attempt"
+    trigger:
+      - platform: state
+        entity_id: persistent_notification.httplogin
+    condition:
+      - condition: template
+        value_template: "{{ trigger.to_state.state != off }}"
+    action:
+      - service: notify.my_pushbullet
+        data_template:
+          title: "Tentativa falhada no acesso ao Home Assistant!"
+          message: "{{ states.persistent_notification.httplogin.attributes.message }}"
+          data:
+            url: http://www.ip-tracker.org/locator/ip-lookup.php?ip={{ states.persistent_notification.httplogin.attributes.message.split ("from ") [1]}}

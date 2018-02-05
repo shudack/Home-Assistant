@@ -1,0 +1,205 @@
+﻿#--------------------------------------------------------------------
+#	Home Assistant - Lights
+#--------------------------------------------------------------------
+#	Author		:	Flávio Pinho
+#	Date		:	2018-01-17
+#	Description :	Set configuration to Lights
+#--------------------------------------------------------------------
+
+light:
+  - platform: yeelight
+    devices:
+      192.168.1.82:
+        name: Bedroom RGB
+#        transition: 1000
+#        use_music_mode: False
+        save_on_change: True
+
+switch:
+  - platform: rpi_gpio
+    ports:
+      15: Desktop RGB
+    invert_logic: True
+
+group:
+  Lights:
+    name: Luzes
+    entities:
+      - light.bedroom_rgb
+      - switch.desktop_rgb
+      - light.gateway_light_7811dcb2121f
+
+automation:
+  - alias: Ligar Luz da Secretária Quando Ligar Computador
+    trigger:
+      platform: numeric_state
+      entity_id:
+        - sensor.nut_ups_load
+      value_template: '{{ states.sensor.nut_ups_load.state }}'
+      above: 35
+    condition:
+      - condition: state
+        entity_id: device_tracker.flavio_phone
+        state: 'home'
+    action:
+      - service: notify.my_pushbullet
+        data:
+          message: 'Luz da secretária ligada'
+      - service: switch.turn_on
+        data:
+          entity_id: switch.desktop_RGB
+
+  - alias: Desligar Luz da Secretária Quando Desligar Computador
+    trigger:
+      platform: numeric_state
+      entity_id:
+        - sensor.nut_ups_load
+      value_template: '{{ states.sensor.nut_ups_load.state }}'
+      below: 35
+    condition:
+      - condition: state
+        entity_id: device_tracker.flavio_phone
+        state: 'home'
+    action:
+      - service: notify.my_pushbullet
+        data:
+          message: 'Luz da secretária desligada'
+      - service: switch.turn_off
+        data:
+          entity_id: switch.desktop_RGB
+
+  - alias: Ligar a Luz do Gateway Depois das 20h
+    trigger:
+      platform: state
+      entity_id: device_tracker.flavio_phone
+      from: 'not_home'
+      to: 'home'
+    condition:
+      condition: and
+      conditions:
+        - condition: time
+          after: '20:00:00'
+          before: '00:00:00'
+          weekday:
+            - mon
+            - tue
+            - wed
+            - thu
+            - fri
+        - condition: numeric_state
+          entity_id: sensor.illumination_158d0001e08eea
+          below: '2'
+    action:
+      - service: notify.my_pushbullet
+        data:
+          message: 'Luz do gateway ligada'
+      - service: homeassistant.turn_on
+        data:
+          entity_id: light.gateway_light_7811dcb2121f
+          color_name: dodgerblue
+          brightness: 255
+
+  - alias: Ligar Luz do Quarto com Movimento
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001e08eea
+      from: 'off'
+      to: 'on'
+    condition:
+      condition: and
+      conditions:
+        - condition: time
+          after: '18:00:00'
+          before: '00:00:00'
+        - condition: state
+          entity_id: device_tracker.flavio_phone
+          state: 'home'
+        - condition: numeric_state
+          entity_id: sensor.illumination_158d0001e08eea
+          below: '2'
+        - condition: sun
+          after: sunset
+    action:
+      - service: notify.my_pushbullet
+        data:
+          message: 'Luz do quarto ligada'
+      - service: homeassistant.turn_on
+        data:
+          entity_id: light.bedroom_rgb
+#          color_temp: 154
+#          brightness: 80
+
+  - alias: Ligar Luz do Gateway com Movimento Durante a Noite
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001e08eea
+      from: 'off'
+      to: 'on'
+    condition:
+      condition: and
+      conditions:
+        - condition: time
+          after: '00:00:00'
+          before: '08:00:00'
+        - condition: numeric_state
+          entity_id: sensor.illumination_158d0001e08eea
+          below: '2'
+    action:
+      - service: notify.my_pushbullet
+        data:
+          message: 'Luz do gateway ligada'
+      - service: homeassistant.turn_on
+        data:
+          entity_id: light.gateway_light_7811dcb2121f
+          color_name: dodgerblue
+          brightness: 255
+
+  - alias: Desligar a Luz do Quarto 5 Min Após Último Movimento
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001e08eea
+      from: 'on'
+      to: 'off'
+      for:
+        minutes: 5
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: light.bedroom_rgb
+          state: 'on'
+        - condition: state
+          entity_id: media_player.xp1000
+          state: 'off'
+    action:
+      - service: notify.my_pushbullet
+        data:
+          message: 'Luz do quarto desligada'
+      - service: homeassistant.turn_off
+        data:
+          entity_id: light.bedroom_rgb
+
+  - alias: Desligar a Luz do Gateway 5 Min Após Último Movimento
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001e08eea
+      from: 'on'
+      to: 'off'
+      for:
+        minutes: 5
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: light.gateway_light_7811dcb2121f
+          state: 'on'
+        - condition: state
+          entity_id: media_player.xp1000
+          state: 'off'
+    action:
+      - service: notify.my_pushbullet
+        data:
+          message: 'Luz do gateway desligada'
+      - service: homeassistant.turn_off
+        data:
+          entity_id: light.gateway_light_7811dcb2121f

@@ -1,0 +1,203 @@
+﻿#--------------------------------------------------------------------
+#	Home Assistant - Gateway
+#--------------------------------------------------------------------
+#	Author		:	Flávio Pinho
+#	Date		:	2018-01-30
+#	Description :	Set configuration to Gateway
+#--------------------------------------------------------------------
+
+xiaomi_aqara:
+  discovery_retry: 10
+  gateways:
+   - mac: !secret xiaomi_mac
+     key: !secret xiaomi_key
+     host: !secret xiaomi_host
+
+group:
+  Xiaomi Gateway:
+    name: Xiaomi Gateway
+    entities:
+      - input_boolean.mute_gateway_sounds
+      - input_select.gateway_sound
+      - input_number.gateway_volume
+      - input_number.loop_delay
+      - script.play_sound
+      - script.play_sound_loop
+      - script.play_sound_single
+
+  Room:
+    name: Quarto
+    entities:
+      - sensor.temperature_158d000201f774
+      - sensor.humidity_158d000201f774
+      - sensor.illumination_7811dcb2121f
+      - sensor.illumination_158d0001e08eea
+      - sensor.motion_room
+
+  Door:
+    name: Entrada
+    entities:
+      - sensor.door_main
+
+  Smart Power:
+    name: Energia Inteligente
+    entities:
+      - switch.plug_158d0001026537
+      - sensor.plug_load_power
+      - sensor.plug_power_consumed_kwh
+      - sensor.plug_power_consumed_cost
+      - sensor.plug_in_use
+      - sensor.plug_battery_level
+
+sensor:
+  platform: template
+  sensors:
+    door_main:
+      value_template: '{% if is_state("binary_sensor.door_window_sensor_158d0001bf26c9", "on") %} Aberta {% else %} Fechada {%- endif %}'
+
+    plug_load_power:
+      value_template: '{{ states.switch.plug_158d0001026537.attributes.load_power|float }}'
+      unit_of_measurement: 'W'
+
+    plug_power_consumed_kwh:
+      value_template: '{{ ((states.switch.plug_158d0001026537.attributes.power_consumed | float * 1 / 1000)) | round(2) }}'
+      unit_of_measurement: 'kWh'
+
+    plug_power_consumed_cost:
+      value_template: '{{ ((states.switch.plug_158d0001026537.attributes.power_consumed | float * 1 / 1000 * 0.1603)) | round(2) }}'
+      unit_of_measurement: '€'
+
+    plug_in_use:
+      value_template: '{% if states.switch.plug_158d0001026537.attributes.in_use|default(0) == 1 %} Sim {% else %} Não {%- endif %}'
+
+    plug_battery_level:
+      value_template: >-
+        {%- if states.switch.plug_158d0001026537.attributes.battery_level %}
+          {{ states.switch.plug_158d0001026537.attributes.battery_level|int }}
+        {% else %}
+          {{ states.sensor.plug_battery_level.state }}
+        {%- endif %}
+      icon_template: >
+        {% set battery_level = states.sensor.plug_battery_level.state|default(0)|int %}
+        {% set battery_round = (battery_level / 10) |int * 10 %}
+        {% if battery_round >= 100 %}
+          mdi:battery
+        {% elif battery_round > 0 %}
+          mdi:battery-{{ battery_round }}
+        {% else %}
+          mdi:battery-alert
+        {% endif %}
+      unit_of_measurement: '%'
+
+    motion_room:
+      value_template: '{% if is_state("binary_sensor.motion_sensor_158d0001e08eea", "on") %} Sim {% else %} Não {%- endif %}'
+
+input_boolean:
+  mute_gateway_sounds:
+    name: Silenciar
+    icon: mdi:volume-off
+
+script:
+  play_sound:
+    alias: "Reproduzir som em ciclo"
+    sequence:
+      - condition: state
+        entity_id: input_boolean.mute_gateway_sounds
+        state: 'off'
+      - service: xiaomi_aqara.play_ringtone
+        data_template:
+          gw_mac: !secret xiaomi_mac
+          ringtone_id: "{{ states.input_select.gateway_sound.state.split('-')[0] }}"
+          ringtone_vol: "{{ states.input_number.gateway_volume.state|int }}"
+      - delay: '00:00:{{ states.input_number.loop_delay.state | int }}'
+      - service: script.play_sound_loop
+
+  play_sound_loop:
+    alias: "Reproduz som selecionado em ciclo"
+    sequence:
+      - condition: state
+        entity_id: input_boolean.mute_gateway_sounds
+        state: 'off'
+      - delay: '00:00:{{ states.input_number.loop_delay.state | int }}'
+      - service: script.play_sound
+
+  play_sound_single:
+    alias: "Reproduzir som"
+    sequence:
+      - condition: state
+        entity_id: input_boolean.mute_gateway_sounds
+        state: 'off'
+      - service: xiaomi_aqara.play_ringtone
+        data_template:
+          gw_mac: !secret xiaomi_mac
+          ringtone_id: "{{ states.input_select.gateway_sound.state.split('-')[0] }}"
+          ringtone_vol: "{{ states.input_number.gateway_volume.state|int }}"
+
+input_number:
+  gateway_volume:
+    name: Volume
+    initial: 10
+    min: 0
+    max: 100
+    step: 2
+    icon: mdi:volume-high
+
+  loop_delay:
+    name: "Atrasar ciclo"
+    initial: 1
+    min: 0
+    max: 15
+    step: 1
+    icon: mdi:loop
+
+input_select:
+  gateway_sound:
+    name: Toque
+    options:
+      - "0 - Police car 1"
+      - "1 - Police car 2"
+      - "2 - Accident"
+      - "3 - Countdown"
+      - "4 - Ghost"
+      - "5 - Sniper rifle"
+      - "6 - Battle"
+      - "7 - Air raid"
+      - "8 - Bark"
+      - "10 - Doorbell"
+      - "11 - Knock at a door"
+      - "12 - Amuse"
+      - "13 - Alarm clock"
+      - "20 - MiMix"
+      - "21 - Enthusiastic"
+      - "22 - GuitarClassic"
+      - "23 - IceWorldPiano"
+      - "24 - LeisureTime"
+      - "25 - ChildHood"
+      - "26 - MorningStreamLiet"
+      - "27 - MusicBox"
+      - "28 - Orange"
+      - "29 - Thinker"
+#      - "10001 - Bum Bum Tam Tam"
+#      - "10002 - Beep Beep"
+#      - "10003 - Time beep 3x"
+#      - "10004 - Mi gente"
+#      - "10005 - Time beep 4x"
+#      - "10006 - Car lock"
+    icon: mdi:music-note
+
+automation:
+  - alias: Porta Principal Aberta
+    trigger:
+      platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001bf26c9
+      from: 'off'
+      to: 'on'
+    action:
+      - service: notify.my_pushbullet
+        data:
+          message: 'Porta principal aberta'
+      - service: xiaomi_aqara.play_ringtone
+        data:
+          gw_mac: !secret xiaomi_mac
+          ringtone_id: 10
+          ringtone_vol: 30

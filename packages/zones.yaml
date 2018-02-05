@@ -1,0 +1,38 @@
+﻿#--------------------------------------------------------------------
+#	Home Assistant - Zones
+#--------------------------------------------------------------------
+#	Author		:	Flávio Pinho
+#	Date		:	2018-01-20
+#	Description :	Set configuration to Zones
+#--------------------------------------------------------------------
+
+zone:
+  - name: Casa
+    latitude: !secret latitude_casa
+    longitude: !secret longitude_casa
+    radius: 100
+    icon: mdi:home
+
+  - name: Trabalho
+    latitude: !secret latitude_trabalho
+    longitude: !secret longitude_trabalho
+    radius: 100
+    icon: mdi:briefcase
+
+  - name: FFitness
+    latitude: !secret latitude_ffitness
+    longitude: !secret longitude_ffitness
+    radius: 100
+    icon: mdi:heart-pulse
+
+  - name: Desafio Fit
+    latitude: !secret latitude_desafio_fit
+    longitude: !secret longitude_desafio_fit
+    radius: 100
+    icon: mdi:heart-pulse
+
+  - name: Casa Couto
+    latitude: !secret latitude_casa_couto
+    longitude: !secret longitude_casa_couto
+    radius: 100
+    icon: mdi:home

@@ -1,0 +1,16 @@
+﻿#--------------------------------------------------------------------
+#	Home Assistant - Mqtt Broker
+#--------------------------------------------------------------------
+#	Author		:	Flávio Pinho
+#	Date		:	2018-01-17
+#	Description :	Set configuration to Mqtt Broker
+#--------------------------------------------------------------------
+
+mqtt:
+  broker: !secret mqtt_host
+  port: !secret mqtt_port
+  client_id: home-assistant
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+  discovery: true
+  discovery_prefix: homeassistant

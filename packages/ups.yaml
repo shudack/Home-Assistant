@@ -1,0 +1,90 @@
+﻿#--------------------------------------------------------------------
+#	Home Assistant - UPS
+#--------------------------------------------------------------------
+#	Author		:	Flávio Pinho
+#	Date		:	2018-01-17
+#	Description :	Set configuration to UPS
+#--------------------------------------------------------------------
+
+sensor:
+  - platform: nut
+    resources:
+      - ups.status
+      - battery.charge
+      - battery.runtime
+      - ups.beeper.status
+      - ups.mfr
+      - ups.model
+      - ups.load
+      - input.voltage
+
+  - platform: template
+    sensors:
+      ups_status:
+        value_template: >-
+          {%- if is_state('sensor.nut_ups_status_data', 'OL') %}
+            Normal
+          {% elif is_state('sensor.nut_ups_status_data', 'OL CHRG') %}
+            A carregar
+          {% elif is_state('sensor.nut_ups_status_data', 'OB DISCHRG') %}
+            Em bateria
+          {% elif is_state('sensor.nut_ups_status_data', 'LB DISCHRG') %}
+            Bateria fraca
+          {% elif is_state('sensor.nut_ups_status_data', 'RB') %}
+            Substituir bateria
+          {% else %}
+            Desconhecido
+          {%- endif %}
+
+      ups_battery:
+        unit_of_measurement: '%'
+        value_template: >-
+          {%- if states.sensor.nut_ups_battery_charge.state %}
+            {{ states.sensor.nut_ups_battery_charge.state|round }}
+          {% else %}
+            {{ states.sensor.ups_battery.state }}
+          {%- endif %}
+        icon_template: >
+          {% set battery_level = states.sensor.ups_battery.state|default(0)|int %}
+          {% set battery_round = (battery_level / 10) |int * 10 %}
+          {% if battery_round >= 100 %}
+            mdi:battery
+          {% elif battery_round > 0 %}
+            mdi:battery-{{ battery_round }}
+          {% else %}
+            mdi:battery-alert
+          {% endif %}
+
+      on_off_switch_ups_beeper:
+        value_template: '{% if is_state("switch.ups_beeper", "off") %}conectado{% else %}desconectado{% endif %}'
+        friendly_name: 'Sinal sonoro UPS'
+
+switch:
+  - platform: template
+    switches:
+      ups_beeper:
+        value_template: "{{ is_state('sensor.nut_ups_beeper_status', 'enabled') }}"
+        turn_on:
+          service: shell_command.nut_ups_enable_beeper
+        turn_off:
+          service: shell_command.nut_ups_disable_beeper
+
+group:
+  UPS:
+    name: Eaton UPS
+    entities:
+      - sensor.ups_status
+      - sensor.ups_battery
+      - sensor.nut_ups_battery_runtime
+      - sensor.nut_ups_load
+      - sensor.nut_ups_input_voltage
+      - switch.ups_beeper
+
+shell_command:
+  nut_ups_enable_beeper: !secret nut_ups_enable_beeper_cmd
+
+  nut_ups_disable_beeper: !secret nut_ups_disable_beeper_cmd
+
+  restart_ups_driver_controller: sudo upsdrvctl start
+
+  start_nut_server: sudo systemctl start nut-server.service

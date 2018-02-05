@@ -1,0 +1,65 @@
+﻿#--------------------------------------------------------------------
+#	Home Assistant - Speedtest
+#--------------------------------------------------------------------
+#	Author		:	Flávio Pinho
+#	Date		:	2018-01-17
+#	Description :	Set configuration to Speedtest
+#--------------------------------------------------------------------
+
+sensor:
+  - platform: speedtest
+#    server_id: 10363
+    minute:
+      - 0
+      - 30
+    monitored_conditions:
+      - ping
+      - download
+      - upload
+
+group:
+  Network:
+    name: Velocidade Internet
+    entities:
+      - sensor.speedtest_ping
+      - sensor.speedtest_download
+      - sensor.speedtest_upload
+
+automation:
+  #internet download speed to slow
+  - alias: Velocidade de Download Lenta
+    hide_entity: true
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.speedtest_download
+        below: '50'
+        above: '1'
+    action:
+      - service: notify.my_pushbullet
+        data:
+          message: "A velocidade de download é {{ states.sensor.speedtest_download.state }} mbit's"
+
+  #internet upload speed to slow
+  - alias: Velocidade de Upload Lenta
+    hide_entity: true
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.speedtest_upload
+        below: '5'
+        above: '1'
+    action:
+      - service: notify.my_pushbullet
+        data:
+          message: "A velocidade de upload é {{ states.sensor.speedtest_upload.state }} mbit's"
+
+  #internet ping is to high
+  - alias: Ping Alto
+    hide_entity: true
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.speedtest_ping
+        above: '30'
+    action:
+      - service: notify.my_pushbullet
+        data:
+          message: "O ping está a {{ states.sensor.speedtest_ping.state }} ms"

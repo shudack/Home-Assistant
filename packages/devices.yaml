@@ -1,0 +1,40 @@
+﻿#--------------------------------------------------------------------
+#	Home Assistant - Devices
+#--------------------------------------------------------------------
+#	Author		:	Flávio Pinho
+#	Date		:	2018-01-17
+#	Description :	Set configuration to Devices
+#--------------------------------------------------------------------
+
+group:
+  Devices:
+    name: Dispositivos
+    entities:
+      - sensor.flaviopinhodt_eth
+      - sensor.pipplware
+      - sensor.fpinho
+      - sensor.xp1000
+      - sensor.smart_camera
+      - sensor.vacuum
+      - sensor.light_rgb
+      - sensor.xiaomi_gateway
+
+sensor:
+  platform: template
+  sensors:
+    flaviopinhodt_eth:
+      value_template: '{% if is_state("device_tracker.flaviopinhodt_eth", "home") %} Ligado {% else %} Desligado {%- endif %}'
+    pipplware:
+      value_template: '{% if is_state("device_tracker.pipplware", "home") %} Ligado {% else %} Desligado {%- endif %}'
+    fpinho:
+      value_template: '{% if is_state("device_tracker.fpinho", "home") %} Ligado {% else %} Desligado {%- endif %}'
+    xp1000:
+      value_template: '{% if is_state("device_tracker.xp1000", "home") %} Ligado {% else %} Desligado {%- endif %}'
+    smart_camera:
+      value_template: '{% if is_state("device_tracker.smart_camera", "home") %} Ligado {% else %} Desligado {%- endif %}'
+    vacuum:
+      value_template: '{% if is_state("device_tracker.vacuum", "home") %} Ligado {% else %} Desligado {%- endif %}'
+    light_rgb:
+      value_template: '{% if is_state("device_tracker.light_rgb", "home") %} Ligado {% else %} Desligado {%- endif %}'
+    xiaomi_gateway:
+      value_template: '{% if is_state("device_tracker.xiaomi_gateway", "home") %} Ligado {% else %} Desligado {%- endif %}'

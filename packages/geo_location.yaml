@@ -1,0 +1,98 @@
+﻿#--------------------------------------------------------------------
+#	Home Assistant - Geo Location
+#--------------------------------------------------------------------
+#	Author		:	Flávio Pinho
+#	Date		:	2018-01-20
+#	Description :	Set configuration to Geo Location
+#--------------------------------------------------------------------
+
+sensor:
+  - platform: google_travel_time
+    name: Home2Work
+    api_key: !secret google_travel_api
+    origin: zone.casa
+    destination: zone.trabalho
+#    origin: place_id:ChIJ99dZOmk2Iw0RFt7_Mx_j7eo
+#    destination: place_id:ChIJ3_tpnaI2Iw0R8Gp-25NozpA
+    options:
+      mode: driving
+
+  - platform: google_travel_time
+    name: Work2Desafio
+    api_key: !secret google_travel_api
+    origin: zone.trabalho
+    destination: zone.desafio_fit
+#    origin: place_id:ChIJ3_tpnaI2Iw0R8Gp-25NozpA
+#    destination: place_id:ChIJ3emtJA43Iw0R_0xZR1pMiu8
+    options:
+      mode: driving
+
+  - platform: google_travel_time
+    name: Work2Ffitness
+    api_key: !secret google_travel_api
+    origin: zone.trabalho
+    destination: zone.ffitness
+#    origin: place_id:ChIJ3_tpnaI2Iw0R8Gp-25NozpA
+#    destination: place_id:ChIJt-C3ILo3Iw0RO-c6GcYxuBY
+    options:
+      mode: driving
+
+  - platform: google_travel_time
+    name: Desafio2Home
+    api_key: !secret google_travel_api
+    origin: zone.desafio_fit
+    destination: zone.casa
+#    origin: place_id:ChIJ3emtJA43Iw0R_0xZR1pMiu8
+#    destination: place_id:ChIJ99dZOmk2Iw0RFt7_Mx_j7eo
+    options:
+      mode: driving
+
+  - platform: google_travel_time
+    name: Ffitness2Home
+    api_key: !secret google_travel_api
+    origin: zone.ffitness
+    destination: zone.casa
+#    origin: place_id:ChIJt-C3ILo3Iw0RO-c6GcYxuBY
+#    destination: place_id:ChIJ99dZOmk2Iw0RFt7_Mx_j7eo
+    options:
+      mode: driving
+
+  - platform: google_travel_time
+    name: Home2Home_Couto
+    api_key: !secret google_travel_api
+    origin: zone.casa
+    destination: zone.casa_couto
+#    origin: place_id:ChIJ99dZOmk2Iw0RFt7_Mx_j7eo
+#    destination: place_id:ChIJ4ZEvZROCIw0RLrEVzvNOi50
+    options:
+      mode: driving
+
+  - platform: google_geocode
+    name: Flavio Location
+    api_key: !secret google_travel_api
+    origin: device_tracker.flavio_tracker
+    options: formatted_address
+#    display_zone: hide
+
+camera:
+  - platform: generic
+    name: Flavio Map
+    still_image_url: https://maps.googleapis.com/maps/api/staticmap?size=800x800&maptype=satellite&markers=color:gray|label:F|{{ states.device_tracker.flavio_tracker.attributes.latitude }},{{ states.device_tracker.flavio_tracker.attributes.longitude }}&markers=color:green|label:H|{{ states.device_tracker.flavio_tracker.attributes.latitude }},{{ states.device_tracker.flavio_tracker.attributes.longitude }}
+    limit_refetch_to_url_change: true
+
+group:
+  Travels:
+    name: Viagens
+    entities:
+      - sensor.home2work
+      - sensor.work2desafio
+      - sensor.work2ffitness
+      - sensor.desafio2home
+      - sensor.ffitness2home
+      - sensor.home2home_couto
+
+  Location:
+    name: Localização
+    entities:
+      - sensor.flavio_location
+      - camera.flavio_map

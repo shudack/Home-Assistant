@@ -1,0 +1,65 @@
+﻿#--------------------------------------------------------------------
+#	Home Assistant - Vacuum
+#--------------------------------------------------------------------
+#	Author		:	Flávio Pinho
+#	Date		:	2018-01-17
+#	Description :	Set configuration to Vacuum
+#--------------------------------------------------------------------
+
+vacuum:
+  - platform: xiaomi_miio
+    host: !secret vacuum_host
+    token: !secret vacuum_token
+
+sensor:
+  - platform: template
+    sensors:
+      xiaomi_battery_level:
+        value_template: >
+          {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.battery_level }}
+        friendly_name: Bateria
+        unit_of_measurement: '%'
+
+      xiaomi_main_brush_left:
+        value_template: >
+          {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.main_brush_left }}
+        friendly_name: Escova principal
+        unit_of_measurement: 'horas'
+
+      xiaomi_side_brush_left:
+        value_template: >
+          {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.side_brush_left }}
+        friendly_name: Escova lateral
+        unit_of_measurement: 'horas'
+
+      xiaomi_filter_left:
+        value_template: >
+          {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.filter_left }}
+        friendly_name: Filtro
+        unit_of_measurement: 'horas'
+
+      xiaomi_status:
+        value_template: >
+          {%- if states.vacuum.xiaomi_vacuum_cleaner.attributes.status == "Charging" %}
+            A carregar
+          {% elif states.vacuum.xiaomi_vacuum_cleaner.attributes.status == "Cleaning" %}
+            A limpar
+          {% elif states.vacuum.xiaomi_vacuum_cleaner.attributes.status == "Returning home" %}
+            A voltar à base
+          {% elif states.vacuum.xiaomi_vacuum_cleaner.attributes.status == "Idle" %}
+            Parado
+          {% else %}
+            {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.status }}
+          {%- endif %}
+        friendly_name: Estado
+
+group:
+  Vacuum:
+    name: Aspirador Xiaomi
+    entities:    
+      - vacuum.xiaomi_vacuum_cleaner
+      - sensor.xiaomi_status
+      - sensor.xiaomi_battery_level
+      - sensor.xiaomi_main_brush_left
+      - sensor.xiaomi_side_brush_left
+      - sensor.xiaomi_filter_left

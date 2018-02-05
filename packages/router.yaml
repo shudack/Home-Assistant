@@ -1,0 +1,18 @@
+﻿#--------------------------------------------------------------------
+#	Home Assistant - Router
+#--------------------------------------------------------------------
+#	Author		:	Flávio Pinho
+#	Date		:	2018-01-19
+#	Description :	Set configuration to Router
+#--------------------------------------------------------------------
+
+device_tracker:
+  - platform: thomson
+    host: !secret router_host
+    username: !secret router_username
+    password: !secret router_password
+    interval_seconds: 180
+    consider_home: 240
+    new_device_defaults:
+      track_new_devices: False
+      hide_if_away: False

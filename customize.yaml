@@ -1,0 +1,271 @@
+#-------------------------------------------
+#	Home Assistant Customize Configuration File
+#-------------------------------------------
+
+# Health #
+sensor.steps:
+  friendly_name: Passos
+  unit_of_measurement: 'passos'
+sensor.calories:
+  friendly_name: Calorias
+sensor.distance:
+  friendly_name: Distância
+  unit_of_measurement: 'km'
+sensor.elevation:
+  friendly_name: Elevação
+  unit_of_measurement: 'm'
+sensor.floors:
+  friendly_name: Pisos
+  unit_of_measurement: 'pisos'
+
+# Vacuum #
+vacuum.xiaomi_vacuum_cleaner:
+  friendly_name: Limpar
+  custom_ui_state_card: state-card-custom-ui
+  show_last_changed: true
+sensor.xiaomi_status:
+  icon: mdi:gauge
+sensor.xiaomi_battery_level:
+  icon: mdi:battery-charging
+sensor.xiaomi_main_brush_left:
+  icon: mdi:broom
+sensor.xiaomi_side_brush_left:
+  icon: mdi:broom
+sensor.xiaomi_filter_left:
+  icon: mdi:basket-unfill
+
+# Lights #
+light.bedroom_RGB:
+  friendly_name: Quarto
+  custom_ui_state_card: state-card-custom-ui
+  show_last_changed: true
+switch.desktop_RGB:
+  friendly_name: Secretária
+  icon: mdi:lightbulb
+  custom_ui_state_card: state-card-custom-ui
+  show_last_changed: true
+light.gateway_light_7811dcb2121f:
+  friendly_name: Gateway
+  icon: mdi:lightbulb
+  custom_ui_state_card: state-card-custom-ui
+  show_last_changed: true
+
+# Transmission #
+sensor.transmission_estado:
+  icon: mdi:download
+sensor.transmission_down_speed:
+  friendly_name: Download
+  icon: mdi:cloud-download
+sensor.transmission_up_speed:
+  friendly_name: Upload
+  icon: mdi:cloud-upload
+sensor.transmission_active_torrents:
+  friendly_name: Torrents ativos
+  icon: mdi:arrow-right-bold-circle-outline
+switch.transmission_turtle_mode:
+  friendly_name: Limitar velocidade
+  icon: mdi:trending-down
+  custom_ui_state_card: state-card-custom-ui
+  show_last_changed: true
+
+# Speedtest #
+sensor.speedtest_ping:
+  friendly_name: Ping
+  icon: mdi:lan-connect
+sensor.speedtest_download:
+  friendly_name: Download
+  icon: mdi:cloud-download
+sensor.speedtest_upload:
+  friendly_name: Upload
+  icon: mdi:cloud-upload
+
+# System #
+sensor.date:
+  friendly_name: Data
+sensor.time:
+  friendly_name: Hora
+
+# Uptime #
+sensor.Hassbian_ligado:
+  unit_of_measurement: 'horas'
+
+# Wake-on-Lan #
+switch.flaviopinhopc:
+  icon: mdi:desktop-tower
+  custom_ui_state_card: state-card-custom-ui
+  show_last_changed: true
+
+# Ups #
+sensor.ups_status:
+  friendly_name: Estado
+  icon: mdi:gauge
+sensor.ups_battery:
+  friendly_name: Bateria
+sensor.nut_ups_battery_runtime:
+  friendly_name: Tempo restante
+sensor.nut_ups_load:
+  friendly_name: Nível de capacidade
+  icon: mdi:reload
+sensor.nut_ups_input_voltage:
+  friendly_name: Voltagem entrada
+  icon: mdi:flash
+switch.ups_beeper:
+  friendly_name: Sinal sonoro
+  icon: mdi:music-note
+  custom_ui_state_card: state-card-custom-ui
+  show_last_changed: true
+
+# Estado HA #
+script.restart_ha:
+  icon: mdi:autorenew
+script.reboot_pi:
+  icon: mdi:power
+sensor.cpu_use:
+  friendly_name: 'Uso CPU'
+sensor.ram_free:
+  friendly_name: 'RAM livre'
+  icon: mdi:chip
+sensor.disk_free_:
+  friendly_name: 'Espaço livre'
+  unit_of_measurement: 'Gb'
+sensor.last_boot:
+  friendly_name: 'Último reinício'
+sensor.hassbian_last_boot:
+  friendly_name: 'Uptime HA'
+  unit_of_measurement: 'horas'
+sensor.since_last_boot_templated:
+  friendly_name: 'Uptime Pi'
+  icon: mdi:clock
+sensor.connected_clients:
+  friendly_name: 'Clientes conectados'
+  unit_of_measurement: 'cliente(s)'
+  icon: 'mdi:account'
+
+# Weather #
+sensor.dark_sky_wind_speed:
+  friendly_name: Vel. vento x 3.6
+  icon: mdi:weather-windy
+sensor.dark_sky_temperature:
+  friendly_name: Temperatura na rua
+  icon: mdi:thermometer
+sensor.dark_sky_daily_high_temperature:
+  friendly_name: Temp. máxima
+  icon: mdi:thermometer
+sensor.dark_sky_daily_low_temperature:
+  friendly_name: Temp. mínima
+  icon: mdi:thermometer
+sensor.dark_sky_humidity:
+  friendly_name: Humidade na rua
+  icon: mdi:water
+sensor.dark_sky_precip_probability:
+  friendly_name: Probabilidade de precipitação
+  icon: mdi:water
+sensor.dark_sky_uv_index:
+  friendly_name: Indíce UV
+  icon: mdi:weather-sunny
+  unit_of_measurement: UV
+
+# Devices #
+sensor.flavio_phone:
+  friendly_name: Flávio Pinho
+  entity_picture: /local/images/flavio_pinho.jpg
+sensor.flaviopinhodt_eth:
+  friendly_name: Desktop de Flávio Pinho
+  icon: mdi:desktop-tower
+sensor.fpinho:
+  friendly_name: Raspberry Secundário
+  icon: mdi:server
+sensor.pipplware:
+  friendly_name: PiPplware
+  icon: mdi:server
+sensor.xp1000:
+  friendly_name: Octagon SF8 HD
+  icon: mdi:youtube-play
+sensor.smart_camera:
+  friendly_name: Smart Camera
+  icon: mdi:webcam
+sensor.vacuum:
+  friendly_name: Xiaomi Vacuum
+  icon: mdi:broom
+sensor.light_rgb:
+  friendly_name: Luz Quarto RGB
+  icon: mdi:lightbulb
+sensor.xiaomi_gateway:
+  friendly_name: Xiaomi Gateway
+  icon: mdi:google
+
+# Travels #
+sensor.home2work:
+  friendly_name: Casa -> Trabalho
+  icon: mdi:car-sports
+sensor.work2desafio:
+  friendly_name: Trabalho -> Desafio Fit
+  icon: mdi:car-sports
+sensor.work2ffitness:
+  friendly_name: Trabalho -> FFitness
+  icon: mdi:car-sports
+sensor.desafio2home:
+  friendly_name: Desafio Fit -> Casa
+  icon: mdi:car-sports
+sensor.ffitness2home:
+  friendly_name: FFitness -> Casa
+  icon: mdi:car-sports
+sensor.home2home_couto:
+  friendly_name: Casa -> Casa da Mãe
+  icon: mdi:car-sports
+
+# Location #
+sensor.flavio_location:
+  friendly_name: Localização de Flávio
+  icon: mdi:crosshairs-gps
+camera.flavio_map:
+  friendly_name: Localização de Flávio
+
+# Media Player #
+media_player.xp1000:
+  friendly_name: Octagon SF8 HD
+
+# Holidays #
+input_boolean.holidays:
+  custom_ui_state_card: state-card-custom-ui
+  show_last_changed: true
+
+# Room #
+sensor.temperature_158d000201f774:
+  friendly_name: Temperatura
+  icon: mdi:temperature-celsius
+sensor.humidity_158d000201f774:
+  friendly_name: Humidade
+  icon: mdi:water-percent
+sensor.illumination_7811dcb2121f:
+  friendly_name: Iluminação secretária
+  icon: mdi:lightbulb-on
+sensor.illumination_158d0001e08eea:
+  friendly_name: Iluminação quarto
+  icon: mdi:lightbulb-on
+sensor.motion_room:
+  friendly_name: Movimento
+  icon: mdi:run-fast
+
+# Security #
+sensor.door_main:
+  friendly_name: Porta principal
+  icon: mdi:door
+
+# Smart Power #
+switch.plug_158d0001026537:
+  friendly_name: Tomada
+sensor.plug_load_power:
+  friendly_name: Energia atual
+  icon: mdi:flash-auto
+sensor.plug_power_consumed_kwh:
+  friendly_name: Energia consumida
+  icon: mdi:flash-outline
+sensor.plug_power_consumed_cost:
+  friendly_name: Preço da energia consumida
+  icon: mdi:currency-eur
+sensor.plug_in_use:
+  friendly_name: Em utilização
+  icon: mdi:flash
+sensor.plug_battery_level:
+  friendly_name: Bateria
