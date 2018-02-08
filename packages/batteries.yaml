@@ -1,0 +1,172 @@
+﻿#--------------------------------------------------------------------
+#	Home Assistant - Batteries
+#--------------------------------------------------------------------
+#	Author		:	Flávio Pinho
+#	Date		:	2018-02-07
+#	Description :	Set configuration to Batteries
+#--------------------------------------------------------------------
+
+sensor:
+  platform: template
+  sensors:
+    door_sensor:
+      friendly_name: Bateria sensor porta principal
+      unit_of_measurement: '%'
+      value_template: >-
+        {%- if states.binary_sensor.door_window_sensor_158d0001bf26c9.attributes.battery_level %}
+          {{ states.binary_sensor.door_window_sensor_158d0001bf26c9.attributes.battery_level|round }}
+        {% else %}
+          {{ states.sensor.door_sensor.state }}
+        {%- endif %}
+      icon_template: >
+        {% set battery_level = states.sensor.door_sensor.state|default(0)|int %}
+        {% set battery_round = (battery_level / 10) |int * 10 %}
+        {% if battery_round >= 100 %}
+          mdi:battery
+        {% elif battery_round > 0 %}
+          mdi:battery-{{ battery_round }}
+        {% else %}
+          mdi:battery-alert
+        {% endif %}
+
+    motion_sensor:
+      friendly_name: Bateria sensor movimento
+      unit_of_measurement: '%'
+      value_template: >-
+        {%- if states.binary_sensor.motion_sensor_158d0001e08eea.attributes.battery_level %}
+          {{ states.binary_sensor.motion_sensor_158d0001e08eea.attributes.battery_level|round }}
+        {% else %}
+          {{ states.sensor.motion_sensor.state }}
+        {%- endif %}
+      icon_template: >
+        {% set battery_level = states.sensor.motion_sensor.state|default(0)|int %}
+        {% set battery_round = (battery_level / 10) |int * 10 %}
+        {% if battery_round >= 100 %}
+          mdi:battery
+        {% elif battery_round > 0 %}
+          mdi:battery-{{ battery_round }}
+        {% else %}
+          mdi:battery-alert
+        {% endif %}
+
+    illumination_sensor:
+      friendly_name: Bateria sensor iluminação quarto
+      unit_of_measurement: '%'
+      value_template: >-
+        {%- if states.sensor.illumination_158d0001e08eea.attributes.battery_level %}
+          {{ states.sensor.illumination_158d0001e08eea.attributes.battery_level|round }}
+        {% else %}
+          {{ states.sensor.illumination_sensor.state }}
+        {%- endif %}
+      icon_template: >
+        {% set battery_level = states.sensor.illumination_sensor.state|default(0)|int %}
+        {% set battery_round = (battery_level / 10) |int * 10 %}
+        {% if battery_round >= 100 %}
+          mdi:battery
+        {% elif battery_round > 0 %}
+          mdi:battery-{{ battery_round }}
+        {% else %}
+          mdi:battery-alert
+        {% endif %}
+
+    temperature_sensor:
+      friendly_name: Bateria sensor temperatura
+      unit_of_measurement: '%'
+      value_template: >-
+        {%- if states.sensor.temperature_158d000201f774.attributes.battery_level %}
+          {{ states.sensor.temperature_158d000201f774.attributes.battery_level|round }}
+        {% else %}
+          {{ states.sensor.temperature_sensor.state }}
+        {%- endif %}
+      icon_template: >
+        {% set battery_level = states.sensor.temperature_sensor.state|default(0)|int %}
+        {% set battery_round = (battery_level / 10) |int * 10 %}
+        {% if battery_round >= 100 %}
+          mdi:battery
+        {% elif battery_round > 0 %}
+          mdi:battery-{{ battery_round }}
+        {% else %}
+          mdi:battery-alert
+        {% endif %}
+
+    humidity_sensor:
+      friendly_name: Bateria sensor humidade
+      unit_of_measurement: '%'
+      value_template: >-
+        {%- if states.sensor.humidity_158d000201f774.attributes.battery_level %}
+          {{ states.sensor.humidity_158d000201f774.attributes.battery_level|round }}
+        {% else %}
+          {{ states.sensor.humidity_sensor.state }}
+        {%- endif %}
+      icon_template: >
+        {% set battery_level = states.sensor.humidity_sensor.state|default(0)|int %}
+        {% set battery_round = (battery_level / 10) |int * 10 %}
+        {% if battery_round >= 100 %}
+          mdi:battery
+        {% elif battery_round > 0 %}
+          mdi:battery-{{ battery_round }}
+        {% else %}
+          mdi:battery-alert
+        {% endif %}
+
+group:
+  Batteries Status:
+    name: Estado das Baterias
+    control: hidden
+    entities:
+      - sensor.door_sensor
+      - sensor.motion_sensor
+      - sensor.illumination_sensor
+      - sensor.temperature_sensor
+      - sensor.humidity_sensor
+
+automation:
+  - alias: Alerta Para Substituir Bateria do Sensor Porta Principal
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.door_sensor
+      below: 15
+    action:
+      - service: notify.my_pushbullet
+        data:
+          message: 'Alerta! A bateria do sensor da porta principal necessita de ser substituída, apenas tem {{ states.binary_sensor.door_window_sensor_158d0001bf26c9.attributes.battery_level|int }}% de bateria restante!!'
+
+  - alias: Alerta Para Substituir Bateria do Sensor Movimento
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.motion_sensor
+      below: 15
+    action:
+      - service: notify.my_pushbullet
+        data:
+          message: 'Alerta! A bateria do sensor de movimento necessita de ser substituída, apenas tem {{ states.binary_sensor.motion_sensor_158d0001e08eea.attributes.battery_level|int }}% de bateria restante!!'
+
+  - alias: Alerta Para Substituir Bateria do Sensor Iluminação Quarto
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.illumination_sensor
+      below: 15
+    action:
+      - service: notify.my_pushbullet
+        data:
+          message: 'Alerta! A bateria do sensor de iluminação quarto necessita de ser substituída, apenas tem {{ states.sensor.illumination_158d0001e08eea.attributes.battery_level|int }}% de bateria restante!!'
+
+  - alias: Alerta Para Substituir Bateria do Sensor Temperatura
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.temperature_sensor
+      below: 15
+    action:
+      - service: notify.my_pushbullet
+        data:
+          message: 'Alerta! A bateria do sensor de temperatura necessita de ser substituída, apenas tem {{ states.sensor.temperature_158d000201f774.attributes.battery_level|int }}% de bateria restante!!'
+
+  - alias: Alerta Para Substituir Bateria do Sensor Sensor Humidade
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.humidity_sensor
+      below: 15
+    action:
+      - service: notify.my_pushbullet
+        data:
+          message: 'Alerta! A bateria do sensor de humidade necessita de ser substituída, apenas tem {{ states.sensor.humidity_158d000201f774.attributes.battery_level|int }}% de bateria restante!!'
