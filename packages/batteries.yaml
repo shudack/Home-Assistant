@@ -121,52 +121,18 @@ group:
       - sensor.humidity_sensor
 
 automation:
-  - alias: Alerta Para Substituir Bateria do Sensor Porta Principal
+  - alias: Alerta Para Substituir a Bateria dos Sensores
+    initial_state: true
     trigger:
       platform: numeric_state
-      entity_id: sensor.door_sensor
+      entity_id:
+        - sensor.door_sensor
+        - sensor.motion_sensor
+        - sensor.illumination_sensor
+        - sensor.temperature_sensor
+        - sensor.humidity_sensor
       below: 15
     action:
       - service: notify.my_pushbullet
-        data:
-          message: 'Alerta! A bateria do sensor da porta principal necessita de ser substituída, apenas tem {{ states.binary_sensor.door_window_sensor_158d0001bf26c9.attributes.battery_level|int }}% de bateria restante!!'
-
-  - alias: Alerta Para Substituir Bateria do Sensor Movimento
-    trigger:
-      platform: numeric_state
-      entity_id: sensor.motion_sensor
-      below: 15
-    action:
-      - service: notify.my_pushbullet
-        data:
-          message: 'Alerta! A bateria do sensor de movimento necessita de ser substituída, apenas tem {{ states.binary_sensor.motion_sensor_158d0001e08eea.attributes.battery_level|int }}% de bateria restante!!'
-
-  - alias: Alerta Para Substituir Bateria do Sensor Iluminação Quarto
-    trigger:
-      platform: numeric_state
-      entity_id: sensor.illumination_sensor
-      below: 15
-    action:
-      - service: notify.my_pushbullet
-        data:
-          message: 'Alerta! A bateria do sensor de iluminação quarto necessita de ser substituída, apenas tem {{ states.sensor.illumination_158d0001e08eea.attributes.battery_level|int }}% de bateria restante!!'
-
-  - alias: Alerta Para Substituir Bateria do Sensor Temperatura
-    trigger:
-      platform: numeric_state
-      entity_id: sensor.temperature_sensor
-      below: 15
-    action:
-      - service: notify.my_pushbullet
-        data:
-          message: 'Alerta! A bateria do sensor de temperatura necessita de ser substituída, apenas tem {{ states.sensor.temperature_158d000201f774.attributes.battery_level|int }}% de bateria restante!!'
-
-  - alias: Alerta Para Substituir Bateria do Sensor Sensor Humidade
-    trigger:
-      platform: numeric_state
-      entity_id: sensor.humidity_sensor
-      below: 15
-    action:
-      - service: notify.my_pushbullet
-        data:
-          message: 'Alerta! A bateria do sensor de humidade necessita de ser substituída, apenas tem {{ states.sensor.humidity_158d000201f774.attributes.battery_level|int }}% de bateria restante!!'
+        data_template:
+          message: 'Alerta! {{ trigger.from_state.attributes.friendly_name }} necessita de ser substituída, apenas tem {{ trigger.from_state.state }}% de bateria restante!!'
