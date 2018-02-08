@@ -9,7 +9,6 @@ homeassistant:
   elevation: 459
   unit_system: metric
   time_zone: Europe/Lisbon
-  customize: !include customize.yaml
   packages: !include_dir_named packages
 
 config:
