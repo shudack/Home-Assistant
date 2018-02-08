@@ -6,14 +6,21 @@
 #	Description :	Set configuration to Wake on Lan
 #--------------------------------------------------------------------
 
-switch:
-  - platform: wake_on_lan
-    mac_address: !secret wol_mac
-    name: "FLAVIOPINHO-PC"
-    host: !secret wol_host
+homeassistant:
+  customize:
+    switch.flaviopinhopc:
+      icon: mdi:desktop-tower
+      custom_ui_state_card: state-card-custom-ui
+      show_last_changed: true
 
 group:
   Wake on Lan:
     name: Wake-on-Lan
     entities:
       - switch.flaviopinhopc
+
+switch:
+  - platform: wake_on_lan
+    mac_address: !secret wol_mac
+    name: "FLAVIOPINHO-PC"
+    host: !secret wol_host

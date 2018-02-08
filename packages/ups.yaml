@@ -6,6 +6,38 @@
 #	Description :	Set configuration to UPS
 #--------------------------------------------------------------------
 
+homeassistant:
+  customize:
+    sensor.ups_status:
+      friendly_name: Estado
+      icon: mdi:gauge
+    sensor.ups_battery:
+      friendly_name: Bateria
+    sensor.nut_ups_battery_runtime:
+      friendly_name: Tempo restante
+    sensor.nut_ups_load:
+      friendly_name: Nível de capacidade
+      icon: mdi:reload
+    sensor.nut_ups_input_voltage:
+      friendly_name: Voltagem entrada
+      icon: mdi:flash
+    switch.ups_beeper:
+      friendly_name: Sinal sonoro
+      icon: mdi:music-note
+      custom_ui_state_card: state-card-custom-ui
+      show_last_changed: true
+
+group:
+  UPS:
+    name: Eaton UPS
+    entities:
+      - sensor.ups_status
+      - sensor.ups_battery
+      - sensor.nut_ups_battery_runtime
+      - sensor.nut_ups_load
+      - sensor.nut_ups_input_voltage
+      - switch.ups_beeper
+
 sensor:
   - platform: nut
     resources:
@@ -68,17 +100,6 @@ switch:
           service: shell_command.nut_ups_enable_beeper
         turn_off:
           service: shell_command.nut_ups_disable_beeper
-
-group:
-  UPS:
-    name: Eaton UPS
-    entities:
-      - sensor.ups_status
-      - sensor.ups_battery
-      - sensor.nut_ups_battery_runtime
-      - sensor.nut_ups_load
-      - sensor.nut_ups_input_voltage
-      - switch.ups_beeper
 
 shell_command:
   nut_ups_enable_beeper: !secret nut_ups_enable_beeper_cmd

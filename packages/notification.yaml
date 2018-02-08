@@ -7,7 +7,8 @@
 #--------------------------------------------------------------------
 
 automation:
-  alias: 'Update Available Notifications'
+  alias: Atualização do HA disponível
+  initial_state: true
   hide_entity: true
   trigger:
     platform: state

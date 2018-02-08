@@ -6,11 +6,12 @@
 #	Description :	Set configuration to Datetime
 #--------------------------------------------------------------------
 
-sensor:
-  - platform: time_date
-    display_options:
-      - 'time'
-      - 'date'
+homeassistant:
+  customize:
+    sensor.date:
+      friendly_name: Data
+    sensor.time:
+      friendly_name: Hora
 
 group:
   Datetime:
@@ -18,3 +19,9 @@ group:
     entities:
       - sensor.date
       - sensor.time
+
+sensor:
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'

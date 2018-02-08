@@ -6,6 +6,21 @@
 #	Description :	Set configuration to Alarm Clock
 #--------------------------------------------------------------------
 
+homeassistant:
+  customize:
+    input_boolean.alarm_clock:
+      custom_ui_state_card: state-card-custom-ui
+      show_last_changed: true
+    input_boolean.am:
+      custom_ui_state_card: state-card-custom-ui
+      show_last_changed: true
+    input_boolean.pm:
+      custom_ui_state_card: state-card-custom-ui
+      show_last_changed: true
+    input_boolean.week_day_only:
+      custom_ui_state_card: state-card-custom-ui
+      show_last_changed: true
+
 group:
   Alarm Clock:
     control: hidden

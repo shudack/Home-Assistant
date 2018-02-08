@@ -7,7 +7,8 @@
 #--------------------------------------------------------------------
 
 automation:
-  - alias: "Send Notification Upon Failed Login Attempt"
+  - alias: Enviar Notificação na Falha de Autenticação
+    initial_state: true
     trigger:
       - platform: state
         entity_id: persistent_notification.httplogin

@@ -6,6 +6,35 @@
 #	Description :	Set configuration to Transmission
 #--------------------------------------------------------------------
 
+homeassistant:
+  customize:
+    sensor.transmission_estado:
+      icon: mdi:download
+    sensor.transmission_down_speed:
+      friendly_name: Download
+      icon: mdi:cloud-download
+    sensor.transmission_up_speed:
+      friendly_name: Upload
+      icon: mdi:cloud-upload
+    sensor.transmission_active_torrents:
+      friendly_name: Torrents ativos
+      icon: mdi:arrow-right-bold-circle-outline
+    switch.transmission_turtle_mode:
+      friendly_name: Limitar velocidade
+      icon: mdi:trending-down
+      custom_ui_state_card: state-card-custom-ui
+      show_last_changed: true
+
+group:
+  Transmission:
+    name: Transmission
+    entities:
+      - sensor.transmission_estado
+      - sensor.transmission_down_speed
+      - sensor.transmission_up_speed
+      - sensor.transmission_active_torrents
+      - switch.transmission_turtle_mode
+
 sensor:
   - platform: transmission
     host: !secret transmission_host
@@ -39,13 +68,3 @@ switch:
     port: !secret transmission_port
     username: !secret transmission_username
     password: !secret transmission_password
-
-group:
-  Transmission:
-    name: Transmission
-    entities:
-      - sensor.transmission_estado
-      - sensor.transmission_down_speed
-      - sensor.transmission_up_speed
-      - sensor.transmission_active_torrents
-      - switch.transmission_turtle_mode

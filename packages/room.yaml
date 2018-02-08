@@ -1,0 +1,43 @@
+﻿#--------------------------------------------------------------------
+#	Home Assistant - Room
+#--------------------------------------------------------------------
+#	Author		:	Flávio Pinho
+#	Date		:	2018-02-08
+#	Description :	Set configuration to Room
+#--------------------------------------------------------------------
+
+homeassistant:
+  customize:
+    sensor.temperature_158d000201f774:
+      friendly_name: Temperatura
+      icon: mdi:temperature-celsius
+    sensor.humidity_158d000201f774:
+      friendly_name: Humidade
+      icon: mdi:water-percent
+    sensor.illumination_7811dcb2121f:
+      friendly_name: Iluminação secretária
+      icon: mdi:lightbulb-on
+    sensor.illumination_158d0001e08eea:
+      friendly_name: Iluminação quarto
+      icon: mdi:lightbulb-on
+    sensor.motion_room:
+      friendly_name: Movimento
+      icon: mdi:run-fast
+    binary_sensor.motion_sensor_158d0001e08eea:
+      friendly_name: Sensor de movimento
+
+group:
+  Room:
+    name: Quarto
+    entities:
+      - sensor.temperature_158d000201f774
+      - sensor.humidity_158d000201f774
+      - sensor.illumination_7811dcb2121f
+      - sensor.illumination_158d0001e08eea
+      - sensor.motion_room
+
+sensor:
+  platform: template
+  sensors:
+    motion_room:
+      value_template: '{% if is_state("binary_sensor.motion_sensor_158d0001e08eea", "on") %} Sim {% else %} Não {%- endif %}'

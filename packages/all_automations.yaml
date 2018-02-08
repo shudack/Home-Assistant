@@ -1,0 +1,13 @@
+﻿#--------------------------------------------------------------------
+#	Home Assistant - All Automations
+#--------------------------------------------------------------------
+#	Author		:	Flávio Pinho
+#	Date		:	2018-02-08
+#	Description :	Set configuration to All Automations
+#--------------------------------------------------------------------
+
+homeassistant:
+  customize:
+    group.all_automations:
+      friendly_name: Automatizações
+      hidden: false

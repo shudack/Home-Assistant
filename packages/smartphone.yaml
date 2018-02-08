@@ -1,0 +1,111 @@
+﻿#--------------------------------------------------------------------
+#	Home Assistant - Smartphone
+#--------------------------------------------------------------------
+#	Author		:	Flávio Pinho
+#	Date		:	2018-02-08
+#	Description :	Set configuration to Smartphone
+#--------------------------------------------------------------------
+
+homeassistant:
+  customize:
+    sensor.flavio_gps_accuracy:
+      friendly_name: Precisão GPS de Flávio
+      icon: mdi:satellite-variant
+    sensor.current_wifi:
+      friendly_name: Wifi de Flávio
+      icon: mdi:wifi
+    sensor.screen_on:
+      friendly_name: Ecrã de Flávio
+      icon: mdi:cellphone-iphone
+
+device_tracker:
+#  - platform: owntracks
+#    max_gps_accuracy: 200
+#    waypoints: True
+
+  - platform: mqtt_json
+    devices:
+      flavio_tracker: zanzito/flavio_tracker/location
+
+group:
+  Smartphone:
+    name: Telemóvel
+    entities:
+      - sensor.flavio_battery
+      - sensor.flavio_charging
+      - sensor.flavio_gps_accuracy
+      - sensor.current_wifi
+      - sensor.screen_on
+
+sensor:
+  - platform: mqtt
+    name: Estado da bateria
+    state_topic: "zanzito/flavio_tracker/device_info"
+    value_template: >-
+      {% if value_json.battery_charging == true %}
+        A carregar
+      {% else %}
+        A descarregar
+      {% endif %}
+
+  - platform: mqtt
+    name: Current Wifi
+    state_topic: "zanzito/flavio_tracker/device_info"
+    value_template: >-
+      {% if value_json.current_wifi == "N/A" %}
+        Desligado
+      {% else %}
+        {{ value_json.current_wifi }}
+      {% endif %}
+
+  - platform: mqtt
+    name: Screen On
+    state_topic: "zanzito/flavio_tracker/device_info"
+    value_template: >-
+      {% if value_json.screen_on == true %}
+        Ligado
+      {% else %}
+        Desligado
+      {% endif %}
+
+  - platform: template
+    sensors:
+      flavio_battery:
+        friendly_name: Bateria de Flávio
+        unit_of_measurement: '%'
+        value_template: >-
+          {%- if states.device_tracker.flavio_tracker.attributes.battery %}
+            {{ states.device_tracker.flavio_tracker.attributes.battery|round }}
+          {% else %}
+            {{ states.sensor.flavio_battery.state }}
+          {%- endif %}
+        icon_template: >
+          {% set battery_level = states.sensor.flavio_battery.state|default(0)|int %}
+          {% set battery_round = (battery_level / 10) |int * 10 %}
+          {% if battery_round >= 100 %}
+            mdi:battery
+          {% elif battery_round > 0 %}
+            mdi:battery-{{ battery_round }}
+          {% else %}
+            mdi:battery-alert
+          {% endif %}
+
+      flavio_charging:
+        friendly_name: Estado da bateria de Flávio
+        value_template: '{{ states.sensor.estado_da_bateria.state }}'
+        icon_template: >-
+          {% if states.sensor.estado_da_bateria.state == "A carregar" %}
+            mdi:battery-charging
+          {% else %}
+            mdi:mdi:battery-minus
+          {%- endif %}
+
+      flavio_gps_accuracy:
+        friendly_name: Precisão do GPS de Flávio
+        unit_of_measurement: 'm'
+        value_template: >-
+          {%- if states.device_tracker.flavio_tracker.attributes.gps_accuracy %}
+            {{ states.device_tracker.flavio_tracker.attributes.gps_accuracy|round }}
+          {% else %}
+            {{ states.sensor.flavio_gps_accuracy.state }}
+          {%- endif %}

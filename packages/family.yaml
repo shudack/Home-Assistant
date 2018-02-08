@@ -1,0 +1,32 @@
+﻿#--------------------------------------------------------------------
+#	Home Assistant - Family
+#--------------------------------------------------------------------
+#	Author		:	Flávio Pinho
+#	Date		:	2018-01-20
+#	Description :	Set configuration to Family
+#--------------------------------------------------------------------
+
+homeassistant:
+  customize:
+    input_boolean.holidays:
+      custom_ui_state_card: state-card-custom-ui
+      show_last_changed: true
+
+group:
+  Family:
+    name: Família
+    entities:
+      - sensor.flavio_phone
+      - input_boolean.holidays
+
+input_boolean:
+  holidays:
+    name: Férias
+    initial: 'Off'
+    icon: 'mdi:beach'
+
+sensor:
+  - platform: template
+    sensors:
+      flavio_phone:
+        value_template: '{% if is_state("device_tracker.flavio_phone", "home") %} Casa {% else %} Ausente {%- endif %}'

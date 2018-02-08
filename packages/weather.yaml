@@ -6,6 +6,44 @@
 #	Description :	Set configuration to Weather
 #--------------------------------------------------------------------
 
+homeassistant:
+  customize:
+    sensor.dark_sky_wind_speed:
+      friendly_name: Vel. vento x 3.6
+      icon: mdi:weather-windy
+    sensor.dark_sky_temperature:
+      friendly_name: Temperatura na rua
+      icon: mdi:thermometer
+    sensor.dark_sky_daily_high_temperature:
+      friendly_name: Temp. máxima
+      icon: mdi:thermometer
+    sensor.dark_sky_daily_low_temperature:
+      friendly_name: Temp. mínima
+      icon: mdi:thermometer
+    sensor.dark_sky_humidity:
+      friendly_name: Humidade na rua
+      icon: mdi:water
+    sensor.dark_sky_precip_probability:
+      friendly_name: Probabilidade de precipitação
+      icon: mdi:water
+    sensor.dark_sky_uv_index:
+      friendly_name: Indíce UV
+      icon: mdi:weather-sunny
+      unit_of_measurement: UV
+
+group:
+  Tempo:
+    name: Ambiente Exterior
+    entities:
+      - sensor.estado_do_tempo
+      - sensor.dark_sky_wind_speed
+      - sensor.dark_sky_temperature
+      - sensor.dark_sky_daily_high_temperature
+      - sensor.dark_sky_daily_low_temperature
+      - sensor.dark_sky_humidity
+      - sensor.dark_sky_precip_probability
+      - sensor.dark_sky_uv_index
+
 sensor:
   - platform: darksky
     api_key: !secret darksky_api
@@ -75,21 +113,9 @@ sensor:
             mdi:weather-windy-variant
           {%- endif -%}
 
-group:
-  Tempo:
-    name: Ambiente Exterior
-    entities:
-      - sensor.estado_do_tempo
-      - sensor.dark_sky_wind_speed
-      - sensor.dark_sky_temperature
-      - sensor.dark_sky_daily_high_temperature
-      - sensor.dark_sky_daily_low_temperature
-      - sensor.dark_sky_humidity
-      - sensor.dark_sky_precip_probability
-      - sensor.dark_sky_uv_index
-
 automation:
   - alias: Resumo do Tempo pela Manhã
+    initial_state: true
     hide_entity: true
     trigger:
       platform: time
@@ -104,6 +130,7 @@ automation:
           message: "Bom dia, estão {{ states.sensor.temperature_158d000201f774.state }} graus em casa. Hoje o céu está {{ states.sensor.estado_do_tempo.state }}, estão neste momento {{ states.sensor.dark_sky_temperature.state }} graus, e {{ states.sensor.dark_sky_humidity.state }}% de humidade. A temperatura máxima vai ser de {{ states.sensor.dark_sky_daily_high_temperature.state }} graus e a mínima de {{ states.sensor.dark_sky_daily_low_temperature.state }} graus. Existe {{ states.sensor.dark_sky_precip_probability.state }}% de probabilidade de chover hoje.{% if states('sensor.dark_sky_precip_probability') | int > 50 %} Não te esqueças de levar o guarda-chuva. Tem um belo dia de chuva ;){% else %} Tem um excelente dia.{% endif %}"
 
   - alias: Chover Antes de Sair do Trabalho
+    initial_state: true
     hide_entity: true
     trigger:
       - platform: time
@@ -121,6 +148,7 @@ automation:
           message: "Prepara-te que vai chover {{ states.sensor.dark_sky_precip_intensity.state }} mm"
 
   - alias: Chove Amanhã
+    initial_state: true
     hide_entity: true
     trigger:
       - platform: time

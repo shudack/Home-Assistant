@@ -1,0 +1,76 @@
+﻿#--------------------------------------------------------------------
+#	Home Assistant - Smart Power
+#--------------------------------------------------------------------
+#	Author		:	Flávio Pinho
+#	Date		:	2018-02-08
+#	Description :	Set configuration to Smart Power
+#--------------------------------------------------------------------
+
+homeassistant:
+  customize:
+    switch.plug_158d0001026537:
+      friendly_name: Tomada
+      custom_ui_state_card: state-card-custom-ui
+      show_last_changed: true
+    sensor.plug_load_power:
+      friendly_name: Energia atual
+      icon: mdi:flash-auto
+    sensor.plug_power_consumed_kwh:
+      friendly_name: Energia consumida
+      icon: mdi:flash-outline
+    sensor.plug_power_consumed_cost:
+      friendly_name: Preço da energia consumida
+      icon: mdi:currency-eur
+    sensor.plug_in_use:
+      friendly_name: Em utilização
+      icon: mdi:flash
+    sensor.plug_battery_level:
+      friendly_name: Bateria
+
+group:
+  Smart Power:
+    name: Energia Inteligente
+    entities:
+      - switch.plug_158d0001026537
+      - sensor.plug_load_power
+      - sensor.plug_power_consumed_kwh
+      - sensor.plug_power_consumed_cost
+      - sensor.plug_in_use
+      - sensor.plug_battery_level
+
+sensor:
+  platform: template
+  sensors:
+    plug_load_power:
+      value_template: '{{ states.switch.plug_158d0001026537.attributes.load_power|float }}'
+      unit_of_measurement: 'W'
+
+    plug_power_consumed_kwh:
+      value_template: '{{ ((states.switch.plug_158d0001026537.attributes.power_consumed | float * 1 / 1000)) | round(2) }}'
+      unit_of_measurement: 'kWh'
+
+    plug_power_consumed_cost:
+      value_template: '{{ ((states.switch.plug_158d0001026537.attributes.power_consumed | float * 1 / 1000 * 0.1603)) | round(2) }}'
+      unit_of_measurement: '€'
+
+    plug_in_use:
+      value_template: '{% if states.switch.plug_158d0001026537.attributes.in_use|default(0) == 1 %} Sim {% else %} Não {%- endif %}'
+
+    plug_battery_level:
+      value_template: >-
+        {%- if states.switch.plug_158d0001026537.attributes.battery_level %}
+          {{ states.switch.plug_158d0001026537.attributes.battery_level|int }}
+        {% else %}
+          {{ states.sensor.plug_battery_level.state }}
+        {%- endif %}
+      icon_template: >
+        {% set battery_level = states.sensor.plug_battery_level.state|default(0)|int %}
+        {% set battery_round = (battery_level / 10) |int * 10 %}
+        {% if battery_round >= 100 %}
+          mdi:battery
+        {% elif battery_round > 0 %}
+          mdi:battery-{{ battery_round }}
+        {% else %}
+          mdi:battery-alert
+        {% endif %}
+      unit_of_measurement: '%'

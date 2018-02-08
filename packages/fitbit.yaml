@@ -6,6 +6,34 @@
 #	Description :	Set configuration to Fitbit
 #--------------------------------------------------------------------
 
+homeassistant:
+  customize:
+    sensor.steps:
+      friendly_name: Passos
+      unit_of_measurement: 'passos'
+    sensor.calories:
+      friendly_name: Calorias
+    sensor.distance:
+      friendly_name: Distância
+      unit_of_measurement: 'km'
+    sensor.elevation:
+      friendly_name: Elevação
+      unit_of_measurement: 'm'
+    sensor.floors:
+      friendly_name: Pisos
+      unit_of_measurement: 'pisos'
+
+group:
+  Health:
+    name: Saúde
+    entities:
+      - sensor.steps
+      - sensor.calories
+      - sensor.distance
+      - sensor.elevation
+      - sensor.floors
+      - sensor.fitbit_bateria
+
 sensor:
   - platform: fitbit
     clock_format: 24H
@@ -37,14 +65,3 @@ sensor:
           {%- elif is_state('sensor.charge_2_battery', 'Low') -%}
             mdi:battery-10
           {%- endif -%}
-
-group:
-  Health:
-    name: Saúde
-    entities:
-      - sensor.steps
-      - sensor.calories
-      - sensor.distance
-      - sensor.elevation
-      - sensor.floors
-      - sensor.fitbit_bateria

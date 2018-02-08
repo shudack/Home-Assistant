@@ -6,6 +6,39 @@
 #	Description :	Set configuration to Devices
 #--------------------------------------------------------------------
 
+homeassistant:
+  customize:
+    sensor.flavio_phone:
+      friendly_name: Flávio Pinho
+      entity_picture: /local/images/flavio_pinho.jpg
+    device_tracker.flavio_tracker:
+      friendly_name: Flávio Pinho
+      entity_picture: /local/images/flavio_pinho.jpg
+    sensor.flaviopinhodt_eth:
+      friendly_name: Desktop de Flávio Pinho
+      icon: mdi:desktop-tower
+    sensor.fpinho:
+      friendly_name: Raspberry Secundário
+      icon: mdi:server
+    sensor.pipplware:
+      friendly_name: PiPplware
+      icon: mdi:server
+    sensor.xp1000:
+      friendly_name: Octagon SF8 HD
+      icon: mdi:youtube-play
+    sensor.smart_camera:
+      friendly_name: Smart Camera
+      icon: mdi:webcam
+    sensor.vacuum:
+      friendly_name: Xiaomi Vacuum
+      icon: mdi:broom
+    sensor.light_rgb:
+      friendly_name: Luz Quarto RGB
+      icon: mdi:lightbulb
+    sensor.xiaomi_gateway:
+      friendly_name: Xiaomi Gateway
+      icon: mdi:google
+
 group:
   Devices:
     name: Dispositivos

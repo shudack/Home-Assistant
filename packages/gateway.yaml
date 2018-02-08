@@ -6,6 +6,18 @@
 #	Description :	Set configuration to Gateway
 #--------------------------------------------------------------------
 
+homeassistant:
+  customize:
+    input_boolean.mute_gateway_sounds:
+      custom_ui_state_card: state-card-custom-ui
+      show_last_changed: true
+    script.play_sound:
+      custom_ui_state_card: state-card-custom-ui
+      show_last_changed: true
+    script.play_sound_loop:
+      custom_ui_state_card: state-card-custom-ui
+      show_last_changed: true
+
 xiaomi_aqara:
   discovery_retry: 10
   gateways:
@@ -16,6 +28,7 @@ xiaomi_aqara:
 group:
   Xiaomi Gateway:
     name: Xiaomi Gateway
+    control: hidden
     entities:
       - input_boolean.mute_gateway_sounds
       - input_select.gateway_sound
@@ -24,73 +37,6 @@ group:
       - script.play_sound
       - script.play_sound_loop
       - script.play_sound_single
-
-  Room:
-    name: Quarto
-    entities:
-      - sensor.temperature_158d000201f774
-      - sensor.humidity_158d000201f774
-      - sensor.illumination_7811dcb2121f
-      - sensor.illumination_158d0001e08eea
-      - sensor.motion_room
-
-  Door:
-    name: Entrada
-    entities:
-      - sensor.door_main
-
-  Smart Power:
-    name: Energia Inteligente
-    entities:
-      - switch.plug_158d0001026537
-      - sensor.plug_load_power
-      - sensor.plug_power_consumed_kwh
-      - sensor.plug_power_consumed_cost
-      - sensor.plug_in_use
-      - sensor.plug_battery_level
-
-sensor:
-  platform: template
-  sensors:
-    door_main:
-      value_template: '{% if is_state("binary_sensor.door_window_sensor_158d0001bf26c9", "on") %} Aberta {% else %} Fechada {%- endif %}'
-
-    plug_load_power:
-      value_template: '{{ states.switch.plug_158d0001026537.attributes.load_power|float }}'
-      unit_of_measurement: 'W'
-
-    plug_power_consumed_kwh:
-      value_template: '{{ ((states.switch.plug_158d0001026537.attributes.power_consumed | float * 1 / 1000)) | round(2) }}'
-      unit_of_measurement: 'kWh'
-
-    plug_power_consumed_cost:
-      value_template: '{{ ((states.switch.plug_158d0001026537.attributes.power_consumed | float * 1 / 1000 * 0.1603)) | round(2) }}'
-      unit_of_measurement: '€'
-
-    plug_in_use:
-      value_template: '{% if states.switch.plug_158d0001026537.attributes.in_use|default(0) == 1 %} Sim {% else %} Não {%- endif %}'
-
-    plug_battery_level:
-      value_template: >-
-        {%- if states.switch.plug_158d0001026537.attributes.battery_level %}
-          {{ states.switch.plug_158d0001026537.attributes.battery_level|int }}
-        {% else %}
-          {{ states.sensor.plug_battery_level.state }}
-        {%- endif %}
-      icon_template: >
-        {% set battery_level = states.sensor.plug_battery_level.state|default(0)|int %}
-        {% set battery_round = (battery_level / 10) |int * 10 %}
-        {% if battery_round >= 100 %}
-          mdi:battery
-        {% elif battery_round > 0 %}
-          mdi:battery-{{ battery_round }}
-        {% else %}
-          mdi:battery-alert
-        {% endif %}
-      unit_of_measurement: '%'
-
-    motion_room:
-      value_template: '{% if is_state("binary_sensor.motion_sensor_158d0001e08eea", "on") %} Sim {% else %} Não {%- endif %}'
 
 input_boolean:
   mute_gateway_sounds:
@@ -113,7 +59,7 @@ script:
       - service: script.play_sound_loop
 
   play_sound_loop:
-    alias: "Reproduz som selecionado em ciclo"
+    alias: "Reproduzir som selecionado em ciclo"
     sequence:
       - condition: state
         entity_id: input_boolean.mute_gateway_sounds
@@ -184,20 +130,3 @@ input_select:
 #      - "10005 - Time beep 4x"
 #      - "10006 - Car lock"
     icon: mdi:music-note
-
-automation:
-  - alias: Porta Principal Aberta
-    trigger:
-      platform: state
-      entity_id: binary_sensor.door_window_sensor_158d0001bf26c9
-      from: 'off'
-      to: 'on'
-    action:
-      - service: notify.my_pushbullet
-        data:
-          message: 'Porta principal aberta'
-      - service: xiaomi_aqara.play_ringtone
-        data:
-          gw_mac: !secret xiaomi_mac
-          ringtone_id: 10
-          ringtone_vol: 30

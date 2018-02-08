@@ -6,6 +6,48 @@
 #	Description :	Set configuration to System Monitor
 #--------------------------------------------------------------------
 
+homeassistant:
+  customize:
+    script.restart_ha:
+      icon: mdi:autorenew
+    script.reboot_pi:
+      icon: mdi:power
+    sensor.cpu_use:
+      friendly_name: 'Uso CPU'
+    sensor.ram_free:
+      friendly_name: 'RAM livre'
+      icon: mdi:chip
+    sensor.disk_free_:
+      friendly_name: 'Espaço livre'
+      unit_of_measurement: 'Gb'
+    sensor.last_boot:
+      friendly_name: 'Último reinício'
+    sensor.hassbian_last_boot:
+      friendly_name: 'Uptime HA'
+      unit_of_measurement: 'horas'
+    sensor.since_last_boot_templated:
+      friendly_name: 'Uptime Pi'
+      icon: mdi:clock
+    sensor.connected_clients:
+      friendly_name: 'Clientes conectados'
+      unit_of_measurement: 'cliente(s)'
+      icon: 'mdi:account'
+
+group:
+  Estado HA:
+    name: Sistema HA
+    control: hidden
+    entities:
+      - script.restart_ha
+      - script.reboot_pi
+      - sensor.cpu_use
+      - sensor.ram_free
+      - sensor.disk_free_
+      - sensor.last_boot
+      - sensor.hassbian_last_boot
+      - sensor.since_last_boot_templated
+      - sensor.connected_clients
+
 sensor:
   - platform: systemmonitor
     resources:
@@ -72,20 +114,6 @@ sensor:
           {%- else -%}
             n/a
           {%- endif -%}
-
-group:
-  Estado HA:
-    name: Sistema HA
-    entities:
-      - script.restart_ha
-      - script.reboot_pi
-      - sensor.cpu_use
-      - sensor.ram_free
-      - sensor.disk_free_
-      - sensor.last_boot
-      - sensor.hassbian_last_boot
-      - sensor.since_last_boot_templated
-      - sensor.connected_clients
 
 script:
   restart_ha:

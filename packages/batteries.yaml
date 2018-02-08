@@ -6,6 +6,24 @@
 #	Description :	Set configuration to Batteries
 #--------------------------------------------------------------------
 
+homeassistant:
+  customize:
+    input_boolean.battery_notifications:
+      custom_ui_state_card: state-card-custom-ui
+      show_last_changed: true
+
+group:
+  Batteries Status:
+    name: Estado das Baterias
+    control: hidden
+    entities:
+      - sensor.door_sensor
+      - sensor.motion_sensor
+      - sensor.illumination_sensor
+      - sensor.temperature_sensor
+      - sensor.humidity_sensor
+      - input_boolean.battery_notifications
+
 sensor:
   platform: template
   sensors:
@@ -109,16 +127,11 @@ sensor:
           mdi:battery-alert
         {% endif %}
 
-group:
-  Batteries Status:
-    name: Estado das Baterias
-    control: hidden
-    entities:
-      - sensor.door_sensor
-      - sensor.motion_sensor
-      - sensor.illumination_sensor
-      - sensor.temperature_sensor
-      - sensor.humidity_sensor
+input_boolean:
+  battery_notifications:
+    name: Notificações da bateria
+    initial: on
+    icon: mdi:battery-charging-wireless
 
 automation:
   - alias: Alerta Para Substituir a Bateria dos Sensores
@@ -132,6 +145,9 @@ automation:
         - sensor.temperature_sensor
         - sensor.humidity_sensor
       below: 15
+    condition:
+      - condition: template
+        value_template: '{{ states.input_boolean.battery_notifications.state == "on" }}'
     action:
       - service: notify.my_pushbullet
         data_template:

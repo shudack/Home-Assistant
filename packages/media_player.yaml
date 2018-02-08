@@ -6,6 +6,11 @@
 #	Description :	Set configuration to Media Player
 #--------------------------------------------------------------------
 
+homeassistant:
+  customize:
+    media_player.xp1000:
+      friendly_name: Octagon SF8 HD
+
 media_player:
   - platform: enigma
     host: !secret enigma_host
