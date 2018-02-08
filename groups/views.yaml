@@ -21,6 +21,7 @@ seguranca_view:
     - group.door
     - group.alarm_clock
     - group.devices
+    - group.batteries_status
     - group.all_automations
 
 interior_view:
