@@ -7,7 +7,7 @@ Please feel free to let me know if you find any issues with my code, and/or have
 
 ## Ask for Coupouns and Discounts in Facebook Group "Descontos e Promoções"
 <p align="center">
-  <a href="https://www.facebook.com/groups/descontosepromocoesgb/">
+  <a href="https://www.facebook.com/groups/descontosepromocoesgb/" target="_blank">
     <img width="870" height="340" align="middle" src="https://scontent.flis8-1.fna.fbcdn.net/v/t31.0-8/27164747_333777823787976_7738718499708141467_o.jpg?oh=39309c25f0a2fc856f52a4d634b291c7&oe=5B0D00C1" title="Descontos e Promoções">
     <br>
     FB Group "Descontos e Promoções"
@@ -23,7 +23,7 @@ The following are some of the smart devices that I use for my current Smart Home
   <tr>
     <th>
       <p align="center">
-        <a href="https://goo.gl/KXeCge" target="_blank">
+        <a href="https://goo.gl/KXeCge">
           <img width="160" height="160" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2018/01/19/goods-img/1516322776388016283.jpg" title="Jiawen 5m 5050 RGBW LED Light Strip + Remote Controller + 12V 2A Power Supply RGB + White Indoor for Decoration - RGB + WHITE COLOR">
           <br>
           Jiawen Led RGB Strip
