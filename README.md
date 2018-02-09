@@ -7,7 +7,7 @@ Please feel free to let me know if you find any issues with my code, and/or have
 
 ## Ask for Coupouns and Discounts in Facebook Group "Descontos e Promoções"
 <p align="center">
-  <a href="https://www.facebook.com/groups/descontosepromocoesgb/" target="_blank">
+  <a href="https://www.facebook.com/groups/descontosepromocoesgb/">
     <img width="870" height="340" align="middle" src="https://scontent.flis8-1.fna.fbcdn.net/v/t31.0-8/27164747_333777823787976_7738718499708141467_o.jpg?oh=39309c25f0a2fc856f52a4d634b291c7&oe=5B0D00C1" title="Descontos e Promoções">
     <br>
     FB Group "Descontos e Promoções"
