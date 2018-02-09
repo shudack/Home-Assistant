@@ -1,4 +1,4 @@
-# Welcom to my Home-Assistant
+# Welcome to my Home-Assistant
 
 Here you will find a bunch of scripts that I use to automate my home.
 
