@@ -20,21 +20,21 @@ The following are some of the smart devices that I use for my current Smart Home
     </th>
     <th>
       <p align="center">
-        <img width="150" height="150" align="middle" src="(https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/02/14/goods-img/1501701689114074898.jpg" title="Yeelight Smart Light Strip - RGB COLOR">
+        <img width="150" height="150" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/02/14/goods-img/1501701689114074898.jpg" title="Yeelight Smart Light Strip - RGB COLOR">
         <br>
         <a href="https://www.gearbest.com/smart-lighting/pp_424884.html">Xiaomi Yeelight Smart Light Strip</a>
       </p>
     </th>
     <th>
       <p align="center">
-        <img width="150" height="150" align="middle" src="(https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/06/06/goods-img/1502337681525116071.jpg" title="Xiaomi Philips Smart LED Ball Lamp - WHITE">
+        <img width="150" height="150" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/06/06/goods-img/1502337681525116071.jpg" title="Xiaomi Philips Smart LED Ball Lamp - WHITE">
         <br>
         <a href="https://www.gearbest.com/smart-lighting/pp_644095.html">Xiaomi Philips Smart LED</a>
       </p>
     </th>
     <th>
       <p align="center">
-        <img width="150" height="150" align="middle" src="(https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/02/14/goods-img/1501712202614474839.jpg" title="Xiaomi Yeelight AC220V RGBW E27 Smart LED Bulb - SILVER">
+        <img width="150" height="150" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/02/14/goods-img/1501712202614474839.jpg" title="Xiaomi Yeelight AC220V RGBW E27 Smart LED Bulb - SILVER">
         <br>
         <a href="https://www.gearbest.com/smart-lighting/pp_361555.html">Xiaomi Yeelight Smart LED</a>
       </p>
