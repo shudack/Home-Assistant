@@ -14,8 +14,17 @@ The following are some of the smart devices that I use for my current Smart Home
 | [![alt text](https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/06/06/goods-img/1502337681525116071.jpg "Xiaomi Philips Smart LED Ball Lamp - WHITE") Xiaomi Philips Smart LED](https://www.gearbest.com/smart-lighting/pp_644095.html) | [![alt text](https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/02/14/goods-img/1501712202614474839.jpg "Xiaomi Yeelight AC220V RGBW E27 Smart LED Bulb - SILVER") Xiaomi Yeelight Smart LED](https://www.gearbest.com/smart-lighting/pp_361555.html) |
 
 ## Smart Outlets:
-
-[![alt text](https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2016/03/29/goods-img/1502232057284474743.jpg "Original Xiaomi Mi Smart WiFi Socket - ZigBee Version - XIAOMI SOCKET WHITE") Xiaomi Mi Smart WiFi Socket](https://www.gearbest.com/living-appliances/pp_344666.html)
+<table style="width:100%">
+  <tr>
+    <th>
+      <p align="center">
+        <img width="150" height="150" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2016/03/29/goods-img/1502232057284474743.jpg" title="Original Xiaomi Mi Smart WiFi Socket - ZigBee Version - XIAOMI SOCKET WHITE">
+        <br>
+        <a href="https://www.gearbest.com/living-appliances/pp_344666.html">Xiaomi Mi Smart WiFi Socket</a>
+      </p>
+    </th>
+  </tr>
+</table>
 
 ## Home Security System:
 <table style="width:100%">
@@ -27,8 +36,6 @@ The following are some of the smart devices that I use for my current Smart Home
         <a href="https://www.gearbest.com/living-appliances/pp_344666.html">Xiaomi Mi Smart WiFi Socket</a>
       </p>
     </th>
-    <th>...</th> 
-    <th>...</th>
   </tr>
 </table>
 
