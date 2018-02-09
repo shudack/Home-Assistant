@@ -178,6 +178,13 @@ The following are some of the smart devices that I use for my current Smart Home
         <a href="https://www.gearbest.com/living-appliances/pp_344667.html">Xiaomi Gateway Original</a>
       </p>
     </th>
+    <th>
+      <p align="center">
+        <img width="160" height="160" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/02/13/goods-img/1501696417717521918.jpg" title="Broadlink RM pro WIFI + IR + RF Remote Controller - RM2 PRO  BLACK">
+        <br>
+        <a href="https://www.gearbest.com/smart-home-controls/pp_255607.html?wid=21">Broadlink RM2 Pro</a>
+      </p>
+    </th>
   </tr>
 </table>
 
