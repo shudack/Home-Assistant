@@ -18,6 +18,9 @@ The following are some of the smart devices that I use for my current Smart Home
 [![alt text](https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2016/03/29/goods-img/1502232057284474743.jpg "Original Xiaomi Mi Smart WiFi Socket - ZigBee Version - XIAOMI SOCKET WHITE") Xiaomi Mi Smart WiFi Socket](https://www.gearbest.com/living-appliances/pp_344666.html)
 
 ## Home Security System:
+<p align="center">
+  <img width="460" height="300" src="http://www.fillmurray.com/460/300">
+</p>
 
 ## Motion Sensors:
 
