@@ -23,7 +23,7 @@ The following are some of the smart devices that I use for my current Smart Home
   <tr>
     <th>
       <p align="center">
-        <a href="https://goo.gl/KXeCge">
+        <a href="https://goo.gl/KXeCge" target="_blank">
           <img width="160" height="160" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2018/01/19/goods-img/1516322776388016283.jpg" title="Jiawen 5m 5050 RGBW LED Light Strip + Remote Controller + 12V 2A Power Supply RGB + White Indoor for Decoration - RGB + WHITE COLOR">
           <br>
           Jiawen Led RGB Strip
