@@ -13,28 +13,28 @@ The following are some of the smart devices that I use for my current Smart Home
   <tr>
     <th>
       <p align="center">
-        <img width="150" height="150" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2018/01/19/goods-img/1516322776388016283.jpg" title="Jiawen 5m 5050 RGBW LED Light Strip + Remote Controller + 12V 2A Power Supply RGB + White Indoor for Decoration - RGB + WHITE COLOR">
+        <img width="160" height="160" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2018/01/19/goods-img/1516322776388016283.jpg" title="Jiawen 5m 5050 RGBW LED Light Strip + Remote Controller + 12V 2A Power Supply RGB + White Indoor for Decoration - RGB + WHITE COLOR">
         <br>
         <a href="https://www.gearbest.com/led-strips/pp_712688.html">Jiawen Led RGB Strip</a>
       </p>
     </th>
     <th>
       <p align="center">
-        <img width="150" height="150" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/02/14/goods-img/1501701689144264025.jpg" title="Yeelight Smart Light Strip - RGB COLOR">
+        <img width="160" height="160" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/02/14/goods-img/1501701689144264025.jpg" title="Yeelight Smart Light Strip - RGB COLOR">
         <br>
         <a href="https://www.gearbest.com/smart-lighting/pp_424884.html">Yeelight Smart Light Strip</a>
       </p>
     </th>
     <th>
       <p align="center">
-        <img width="150" height="150" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/06/06/goods-img/1502337681525116071.jpg" title="Xiaomi Philips Smart LED Ball Lamp - WHITE">
+        <img width="160" height="160" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/06/06/goods-img/1502337681525116071.jpg" title="Xiaomi Philips Smart LED Ball Lamp - WHITE">
         <br>
         <a href="https://www.gearbest.com/smart-lighting/pp_644095.html">Xiaomi Philips Smart LED</a>
       </p>
     </th>
     <th>
       <p align="center">
-        <img width="150" height="150" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/02/14/goods-img/1501712202614474839.jpg" title="Xiaomi Yeelight AC220V RGBW E27 Smart LED Bulb - SILVER">
+        <img width="160" height="160" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/02/14/goods-img/1501712202614474839.jpg" title="Xiaomi Yeelight AC220V RGBW E27 Smart LED Bulb - SILVER">
         <br>
         <a href="https://www.gearbest.com/smart-lighting/pp_361555.html">Xiaomi Yeelight Smart LED</a>
       </p>
@@ -47,7 +47,7 @@ The following are some of the smart devices that I use for my current Smart Home
   <tr>
     <th>
       <p align="center">
-        <img width="150" height="150" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2016/03/29/goods-img/1502232057284474743.jpg" title="Original Xiaomi Mi Smart WiFi Socket - ZigBee Version - XIAOMI SOCKET WHITE">
+        <img width="160" height="160" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2016/03/29/goods-img/1502232057284474743.jpg" title="Original Xiaomi Mi Smart WiFi Socket - ZigBee Version - XIAOMI SOCKET WHITE">
         <br>
         <a href="https://www.gearbest.com/living-appliances/pp_344666.html">Xiaomi Mi Smart WiFi Socket</a>
       </p>
