@@ -22,9 +22,10 @@ The following are some of the smart devices that I use for my current Smart Home
   <tr>
     <th>
       <p align="left">
-  <img width="150" height="150" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2016/03/29/goods-img/1502232057284474743.jpg" title="Original Xiaomi Mi Smart WiFi Socket - ZigBee Version - XIAOMI SOCKET WHITE">
-        <br><a href="https://www.gearbest.com/living-appliances/pp_344666.html">Xiaomi Mi Smart WiFi Socket</a>
-</p>
+        <img width="150" height="150" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2016/03/29/goods-img/1502232057284474743.jpg" title="Original Xiaomi Mi Smart WiFi Socket - ZigBee Version - XIAOMI SOCKET WHITE">
+        <br>
+        <a href="https://www.gearbest.com/living-appliances/pp_344666.html">Xiaomi Mi Smart WiFi Socket</a>
+      </p>
     </th>
     <th>...</th> 
     <th>...</th>
