@@ -23,7 +23,7 @@ The following are some of the smart devices that I use for my current Smart Home
   <tr>
     <th>
       <p align="center">
-        <a href="https://www.gearbest.com/led-strips/pp_712688.html">
+        <a href="https://goo.gl/KXeCge">
           <img width="160" height="160" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2018/01/19/goods-img/1516322776388016283.jpg" title="Jiawen 5m 5050 RGBW LED Light Strip + Remote Controller + 12V 2A Power Supply RGB + White Indoor for Decoration - RGB + WHITE COLOR">
           <br>
           Jiawen Led RGB Strip
@@ -32,7 +32,7 @@ The following are some of the smart devices that I use for my current Smart Home
     </th>
     <th>
       <p align="center">
-        <a href="https://www.gearbest.com/smart-lighting/pp_424884.html">
+        <a href="https://goo.gl/6bszN9">
           <img width="160" height="160" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/02/14/goods-img/1501701689144264025.jpg" title="Yeelight Smart Light Strip - RGB COLOR">
           <br>
           Yeelight Smart Light Strip
@@ -41,7 +41,7 @@ The following are some of the smart devices that I use for my current Smart Home
     </th>
     <th>
       <p align="center">
-        <a href="https://www.gearbest.com/smart-lighting/pp_644095.html">
+        <a href="https://goo.gl/k5rQ9R">
           <img width="160" height="160" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/06/06/goods-img/1502337681525116071.jpg" title="Xiaomi Philips Smart LED Ball Lamp - WHITE">
           <br>
           Xiaomi Philips Smart LED
@@ -50,7 +50,7 @@ The following are some of the smart devices that I use for my current Smart Home
     </th>
     <th>
       <p align="center">
-        <a href="https://www.gearbest.com/smart-lighting/pp_361555.html">
+        <a href="https://goo.gl/rzFWZ3">
           <img width="160" height="160" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/02/14/goods-img/1501712202614474839.jpg" title="Xiaomi Yeelight AC220V RGBW E27 Smart LED Bulb - SILVER">
           <br>
           Xiaomi Yeelight Smart LED
@@ -65,7 +65,7 @@ The following are some of the smart devices that I use for my current Smart Home
   <tr>
     <th>
       <p align="center">
-        <a href="https://www.gearbest.com/living-appliances/pp_344666.html">
+        <a href="https://goo.gl/Bu7j8c">
           <img width="160" height="160" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2016/03/29/goods-img/1502232057284474743.jpg" title="Original Xiaomi Mi Smart WiFi Socket - ZigBee Version - XIAOMI SOCKET WHITE">
           <br>
           Xiaomi Smart WiFi Socket
@@ -80,7 +80,7 @@ The following are some of the smart devices that I use for my current Smart Home
   <tr>
     <th>
       <p align="center">
-        <a href="https://www.gearbest.com/ip-cameras/pp_693217.html">
+        <a href="https://goo.gl/wUS6K2">
           <img width="160" height="160" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2018/01/19/goods-img/1516318035542444341.jpg" title="Xiaomi dafang 1080P Smart Monitor Camera - WHITE">
           <br>
           Xiaomi Smart Camera
@@ -95,7 +95,7 @@ The following are some of the smart devices that I use for my current Smart Home
   <tr>
     <th>
       <p align="center">
-        <a href="https://www.gearbest.com/alarm-systems/pp_659226.html">
+        <a href="https://goo.gl/mt5XhW">
           <img width="160" height="160" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/06/27/goods-img/1500937210814992388.jpg" title="Original Xiaomi Smart Home Aqara Human Body Sensor - WHITE">
           <br>
           Xiaomi Human Body Sensor
@@ -110,7 +110,7 @@ The following are some of the smart devices that I use for my current Smart Home
   <tr>
     <th>
       <p align="center">
-        <a href="https://www.gearbest.com/smart-light-bulb/pp_257677.html">
+        <a href="https://goo.gl/9iutjm">
           <img width="160" height="160" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/09/12/goods-img/1509395287750769148.jpg" title="Original Xiaomi Smart Door and Windows Sensor - SMART DOOR AND WINDOWS SENSOR WHITE">
           <br>
           Xiaomi Smart Door
@@ -125,7 +125,7 @@ The following are some of the smart devices that I use for my current Smart Home
   <tr>
     <th>
       <p align="center">
-        <a href="https://www.gearbest.com/raspberry-pi/pp_488334.html">
+        <a href="https://goo.gl/kkEBs5">
           <img width="160" height="160" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/09/16/goods-img/1505671868051662332.JPG" title="DIY Raspberry Pi Model 3 B Motherboard - ENGLISH VERSION GREEN">
           <br>
           Raspberry Pi Model 3 B
@@ -149,7 +149,7 @@ The following are some of the smart devices that I use for my current Smart Home
   <tr>
     <th>
       <p align="center">
-        <a href="https://www.gearbest.com/living-appliances/pp_344665.html">
+        <a href="https://goo.gl/DdbjQT">
           <img width="160" height="160" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/09/16/goods-img/1505671747566178642.jpg" title="Original Xiaomi Mi Smart Temperature and Humidity Sensor - XIAOMI TEMPERATURE AND HUMIDITY SENSOR WHITE">
           <br>
           Xiaomi Temperature and Humidity Sensor
@@ -164,7 +164,7 @@ The following are some of the smart devices that I use for my current Smart Home
   <tr>
     <th>
       <p align="center">
-        <a href="https://www.gearbest.com/power/pp_348958.html">
+        <a href="https://goo.gl/YDPy8K">
           <img width="160" height="160" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/09/16/goods-img/1505671883011809394.JPG" title="2 Channel 5V Relay Module for SCM Development/Home Appliance Control - BLUE">
           <br>
           Relay 2 Channel
@@ -173,7 +173,7 @@ The following are some of the smart devices that I use for my current Smart Home
     </th>
     <th>
       <p align="center">
-        <a href="https://www.gearbest.com/led-accessories/pp_1207399.html">
+        <a href="https://goo.gl/FgKwiQ">
           <img width="160" height="160" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-provider-img/straight-product-img/20171118/T001439/T0014390058/goods-img/1511123953632210461.jpg" title="KWB Male and Female DC Power Connector Jack Adapter Plug for CCTV Camera and Strip Light 5PCS - GREEN AND BLACK">
           <br>
           DC Power Connector
@@ -182,7 +182,7 @@ The following are some of the smart devices that I use for my current Smart Home
     </th>
     <th>
       <p align="center">
-        <a href="https://www.gearbest.com/diy-parts-components/pp_234612.html">
+        <a href="https://goo.gl/mZjwuM">
           <img width="160" height="160" align="middle" src="https://gloimg.gbtcdn.com/gb/2015/201508/goods-img/1501275482138111729.jpg" title="65PCS Breadboard Jump Cable Wires - COLORFUL">
           <br>
           Jump Cable Wires
@@ -191,7 +191,7 @@ The following are some of the smart devices that I use for my current Smart Home
     </th>
     <th>
       <p align="center">
-        <a href="https://www.gearbest.com/other-pc-parts/pp_675946.html">
+        <a href="https://goo.gl/2ZATmu">
           <img width="160" height="160" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/07/24/goods-img/1500869283950293531.jpg" title="2N2222 NPN Switching Triode Transistor for Arduino - BLACK">
           <br>
           Transistor 2N2222 NPN
@@ -206,7 +206,7 @@ The following are some of the smart devices that I use for my current Smart Home
   <tr>
     <th>
       <p align="center">
-        <a href="https://www.gearbest.com/alarm-systems/pp_616359.html">
+        <a href="https://goo.gl/x7kMPp">
           <img width="160" height="160" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/09/06/goods-img/1504633508233055644.jpg" title="Xiaomi mijia 6 in 1 Smart Home Security Kit - WHITE">
           <br>
           Xiaomi Home Security
@@ -215,7 +215,7 @@ The following are some of the smart devices that I use for my current Smart Home
     </th>
     <th>
       <p align="center">
-        <a href="https://www.gearbest.com/living-appliances/pp_344667.html">
+        <a href="https://goo.gl/wBiM3V">
           <img width="160" height="160" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2016/12/13/goods-img/1502232053764768910.jpeg" title="Original Xiaomi Mi Smart WiFi Remote Control Multi-functional Gateway Upgrade - XIAOMI MULTIFUNCTIONAL GATEWAY WHITE">
           <br>
           Xiaomi Gateway Original
@@ -224,7 +224,7 @@ The following are some of the smart devices that I use for my current Smart Home
     </th>
     <th>
       <p align="center">
-        <a href="https://www.gearbest.com/smart-home-controls/pp_255607.html?wid=21">
+        <a href="https://goo.gl/3zpeYZ">
           <img width="160" height="160" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/02/13/goods-img/1501696417717521918.jpg" title="Broadlink RM pro WIFI + IR + RF Remote Controller - RM2 PRO  BLACK">
           <br>
           Broadlink RM2 Pro
