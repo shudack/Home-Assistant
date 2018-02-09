@@ -181,6 +181,8 @@ The following are some of the smart devices that I use for my current Smart Home
   </tr>
 </table>
 
+> Custom Built Smart Light LED RGB Strip - Where I used a Breadboard, Relay switch to turn ON/OFF the electrical, 1x Transistor NPN, 2x Resistances, 1x Led, and a lot Jump Wires. I made a smart web application to control IN and OUT of the house with automations, I used the technologies PHP, Python and MySql.
+
 # Here is a sample view of my dashboard
 
 ![alt text](https://github.com/shudack/Home-Assistant/blob/master/frontend/Frontend%20(1).PNG)
