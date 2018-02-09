@@ -9,9 +9,38 @@ Please feel free to let me know if you find any issues with my code, and/or have
 The following are some of the smart devices that I use for my current Smart Home setup. Please feel free to reach out to me or check my repository on how to configure them.
 
 ## Smart Lights & Switches:
-| [![alt text](https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2018/01/19/goods-img/1516322776388016283.jpg "Jiawen 5m 5050 RGBW LED Light Strip + Remote Controller + 12V 2A Power Supply RGB + White Indoor for Decoration - RGB + WHITE COLOR") Jiawen Led RGB Strip](https://www.gearbest.com/led-strips/pp_712688.html) | [![alt text](https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/02/14/goods-img/1501701689114074898.jpg "Yeelight Smart Light Strip - RGB COLOR") Xiaomi Yeelight Smart Light Strip](https://www.gearbest.com/smart-lighting/pp_424884.html) |
-| ------------- | ------------- |
-| [![alt text](https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/06/06/goods-img/1502337681525116071.jpg "Xiaomi Philips Smart LED Ball Lamp - WHITE") Xiaomi Philips Smart LED](https://www.gearbest.com/smart-lighting/pp_644095.html) | [![alt text](https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/02/14/goods-img/1501712202614474839.jpg "Xiaomi Yeelight AC220V RGBW E27 Smart LED Bulb - SILVER") Xiaomi Yeelight Smart LED](https://www.gearbest.com/smart-lighting/pp_361555.html) |
+<table style="width:100%">
+  <tr>
+    <th>
+      <p align="center">
+        <img width="150" height="150" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2018/01/19/goods-img/1516322776388016283.jpg" title="Jiawen 5m 5050 RGBW LED Light Strip + Remote Controller + 12V 2A Power Supply RGB + White Indoor for Decoration - RGB + WHITE COLOR">
+        <br>
+        <a href="https://www.gearbest.com/led-strips/pp_712688.html">Jiawen Led RGB Strip</a>
+      </p>
+    </th>
+    <th>
+      <p align="center">
+        <img width="150" height="150" align="middle" src="(https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/02/14/goods-img/1501701689114074898.jpg" title="Yeelight Smart Light Strip - RGB COLOR">
+        <br>
+        <a href="https://www.gearbest.com/smart-lighting/pp_424884.html">Xiaomi Yeelight Smart Light Strip</a>
+      </p>
+    </th>
+    <th>
+      <p align="center">
+        <img width="150" height="150" align="middle" src="(https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/06/06/goods-img/1502337681525116071.jpg" title="Xiaomi Philips Smart LED Ball Lamp - WHITE">
+        <br>
+        <a href="https://www.gearbest.com/smart-lighting/pp_644095.html">Xiaomi Philips Smart LED</a>
+      </p>
+    </th>
+    <th>
+      <p align="center">
+        <img width="150" height="150" align="middle" src="(https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/02/14/goods-img/1501712202614474839.jpg" title="Xiaomi Yeelight AC220V RGBW E27 Smart LED Bulb - SILVER">
+        <br>
+        <a href="https://www.gearbest.com/smart-lighting/pp_361555.html">Xiaomi Yeelight Smart LED</a>
+      </p>
+    </th>
+  </tr>
+</table>
 
 ## Smart Outlets:
 <table style="width:100%">
