@@ -4,6 +4,16 @@ Here you will find a bunch of scripts that I use to automate my home.
 
 Please feel free to let me know if you find any issues with my code, and/or have any suggestions. Thank you!
 
+
+## Ask for Coupouns and Discounts in Facebook Group "Descontos e Promoções"
+<p align="center">
+  <a href="https://www.facebook.com/groups/descontosepromocoesgb/">
+    <img width="870" height="340" align="middle" src="https://scontent.flis8-1.fna.fbcdn.net/v/t31.0-8/27164747_333777823787976_7738718499708141467_o.jpg?oh=39309c25f0a2fc856f52a4d634b291c7&oe=5B0D00C1" title="Descontos e Promoções">
+    <br>
+    FB Group "Descontos e Promoções"
+  </a>
+</p>
+
 ## Devices I have currently:
 
 The following are some of the smart devices that I use for my current Smart Home setup. Please feel free to reach out to me or check my repository on how to configure them.
@@ -190,15 +200,6 @@ The following are some of the smart devices that I use for my current Smart Home
 
 > Custom Built Smart Light LED RGB Strip - Where I used a Breadboard, Relay switch to turn ON/OFF the electrical, 1x Transistor NPN, 2x Resistances, 1x Led, and a lot Jump Wires. I made a smart web application to control IN and OUT of the house with automations, I used the technologies PHP, Python and MySql.
 
-
-## Ask for Coupouns and Discounts in Facebook Group "Descontos e Promoções"
-<p align="center">
-  <a href="https://www.facebook.com/groups/descontosepromocoesgb/">
-    <img width="870" height="340" align="middle" src="https://scontent.flis8-1.fna.fbcdn.net/v/t31.0-8/27164747_333777823787976_7738718499708141467_o.jpg?oh=39309c25f0a2fc856f52a4d634b291c7&oe=5B0D00C1" title="Descontos e Promoções">
-    <br>
-    FB Group "Descontos e Promoções"
-  </a>
-</p>
 
 # Here is a sample view of my dashboard
 
