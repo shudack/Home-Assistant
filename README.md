@@ -20,9 +20,9 @@ The following are some of the smart devices that I use for my current Smart Home
     </th>
     <th>
       <p align="center">
-        <img width="150" height="150" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/02/14/goods-img/1501701689114074898.jpg" title="Yeelight Smart Light Strip - RGB COLOR">
+        <img width="150" height="150" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/02/14/goods-img/1501701689144264025.jpg" title="Yeelight Smart Light Strip - RGB COLOR">
         <br>
-        <a href="https://www.gearbest.com/smart-lighting/pp_424884.html">Xiaomi Yeelight Smart Light Strip</a>
+        <a href="https://www.gearbest.com/smart-lighting/pp_424884.html">Yeelight Smart Light Strip</a>
       </p>
     </th>
     <th>
