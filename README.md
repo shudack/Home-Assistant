@@ -60,7 +60,7 @@ The following are some of the smart devices that I use for my current Smart Home
   <tr>
     <th>
       <p align="center">
-        <img width="150" height="150" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2018/01/19/goods-img/1516318035542444341.jpg" title="Xiaomi dafang 1080P Smart Monitor Camera - WHITE">
+        <img width="160" height="160" align="middle" src="https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2018/01/19/goods-img/1516318035542444341.jpg" title="Xiaomi dafang 1080P Smart Monitor Camera - WHITE">
         <br>
         <a href="https://www.gearbest.com/ip-cameras/pp_693217.html">Xiaomi Smart Camera</a>
       </p>
