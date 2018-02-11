@@ -8,15 +8,18 @@
 
 homeassistant:
   customize:
-    input_boolean.alarm_clock:
+    input_boolean.alarm_clock_status:
       custom_ui_state_card: state-card-custom-ui
       show_last_changed: true
-    input_boolean.am:
-      custom_ui_state_card: state-card-custom-ui
-      show_last_changed: true
-    input_boolean.pm:
-      custom_ui_state_card: state-card-custom-ui
-      show_last_changed: true
+    input_number.alarm_clock_hour:
+      icon: mdi:timer
+    input_number.alarm_clock_minute:
+      icon: mdi:timer
+    sensor.alarm_clock_time:
+      friendly_name: Hora atual do alarme
+      icon: mdi:alarm
+    sensor.alarm_clock_time_long:
+      icon: mdi:alarm
     input_boolean.week_day_only:
       custom_ui_state_card: state-card-custom-ui
       show_last_changed: true
@@ -26,24 +29,22 @@ group:
     control: hidden
     name: Despertador
     entities:
-      - input_boolean.alarm_clock
-      - input_number.slider_hours
-      - input_number.slider_minutes
-      - input_boolean.am
-      - input_boolean.pm
-      - input_label.alarm_current_time
+      - input_boolean.alarm_clock_status
+      - input_number.alarm_clock_hour
+      - input_number.alarm_clock_minute
+      - sensor.alarm_clock_time
       - input_boolean.week_day_only
       - automation.alarm_clock
 
 input_number:
-  slider_hours:
+  alarm_clock_hour:
     name: Horas
     initial: 8
     min: 0
-    max: 11
+    max: 23
     step: 1
 
-  slider_minutes:
+  alarm_clock_minute:
     name: Minutos
     initial: 0
     min: 0
@@ -54,141 +55,16 @@ input_boolean:
   week_day_only:
     name: Apenas dias de semana
     initial: on
-    icon: mdi:calendar-check
+    icon: mdi:calendar-clock
 
-  am:
-    name: AM
-    initial: on
-    icon: mdi:weather-sunny
-
-  pm:
-    name: PM
-    initial: off
-    icon: mdi:weather-night
-
-  alarm_clock:
+  alarm_clock_status:
     name: Estado
     initial: on
-    icon: mdi:calendar-check
+    icon: mdi:alarm-check
 
-input_label:
-  alarm_current_time:
-    name: Hora atual do alarme
-    icon: mdi:timer
-
-automation:
-  - alias: Atualizar a Hora Atual do Alarme
-    initial_state: true
-    hide_entity: true
-    trigger:
-      - platform: homeassistant
-        event: start
-      - platform: state
-        entity_id:
-          - input_boolean.am
-          - input_boolean.pm
-          - input_number.slider_hours
-          - input_number.slider_minutes
-    action:
-      - service: input_label.set_value
-        entity_id: input_label.alarm_current_time
-        data_template:
-          value: >
-            {%- if states.input_number.slider_hours.state | int < 10 -%}
-              {%- if states.input_number.slider_hours.state|int == 0 %}
-                12
-              {%- else -%}
-                {{- 0 ~ states.input_number.slider_hours.state|int -}}
-              {%- endif -%}
-            {%- else -%}
-              {{- states.input_number.slider_hours.state |int -}}
-            {% endif -%}:
-            {%- if states.input_number.slider_minutes.state | int < 10 -%}
-              {{- 0 ~ states.input_number.slider_minutes.state |int -}}
-            {%- else -%}
-              {{- states.input_number.slider_minutes.state|int -}}
-            {%- endif -%}{%- if states.input_boolean.am.state == "on" %} AM{%- else %} PM{%- endif -%}
-
-  - alias: AM Alterar Para OFF
-    initial_state: true
-    hide_entity: true
-    trigger:
-      platform: state
-      entity_id: input_boolean.am
-      from: 'on'
-      to: 'off'
-    action:
-      - service: input_boolean.turn_on
-        entity_id: input_boolean.pm
-      - service: input_boolean.turn_off
-        entity_id: input_boolean.am
-
-  - alias: AM Alterar Para ON
-    initial_state: true
-    hide_entity: true
-    trigger:
-      platform: state
-      entity_id: input_boolean.am
-      from: 'off'
-      to: 'on'
-    action:
-      - service: input_boolean.turn_off
-        entity_id: input_boolean.pm
-      - service: input_boolean.turn_on
-        entity_id: input_boolean.am
-
-  - alias: PM Alterar Para OFF
-    initial_state: true
-    hide_entity: true
-    trigger:
-      platform: state
-      entity_id: input_boolean.pm
-      from: 'on'
-      to: 'off'
-    action:
-      - service: input_boolean.turn_on
-        entity_id: input_boolean.am
-      - service: input_boolean.turn_off
-        entity_id: input_boolean.pm
-
-  - alias: PM Alterar Para ON
-    initial_state: true
-    hide_entity: true
-    trigger:
-      platform: state
-      entity_id: input_boolean.pm
-      from: 'off'
-      to: 'on'
-    action:
-      - service: input_boolean.turn_off
-        entity_id: input_boolean.am
-      - service: input_boolean.turn_on
-        entity_id: input_boolean.pm
-
-  - alias: Alarme
-    initial_state: true
-    hide_entity: true
-    trigger:
-      platform: time
-      minutes: '/1'
-      seconds: 00
-    condition:
-      - condition: state
-        entity_id: input_boolean.holidays
-        state: 'off'
-      - condition: template
-        value_template: '{{ states.input_boolean.alarm_clock.state == "on" }}'
-      - condition: template
-        value_template: >
-          {% if states.input_boolean.am.state == "on" %}
-            {% set hour = (states.input_number.slider_hours.state | int) %}
-          {% else %}
-            {% set hour = (states.input_number.slider_hours.state | int) + 12 %}
-          {% endif %}
-          {{ 'true' if states.sensor.time.state.split(':')[0] |int == hour else 'false' }}
-      - condition: template
-        value_template: "{{ 'true' if (states.sensor.time.state.split(':')[1]  |int == states.input_number.slider_minutes.state |int) else 'false' }}"
-    action:
+script:
+  wake_up:
+    sequence:
       - service: notify.my_pushbullet
         data_template:
           message: 'Olá Flávio! Está na hora de acordar!'
@@ -206,3 +82,64 @@ automation:
 #        data_template:
 #          message: >
 #            "Hello, Mr. Flávio! This is an alarm clock reminder! Have a great day!"
+
+sensor:       
+  - platform: template
+    sensors:
+      alarm_clock_hour:
+        value_template: '{{ states.input_number.alarm_clock_hour.state | int }}'
+      alarm_clock_minute:
+        value_template: '{{ states.input_number.alarm_clock_minute.state | int }}'
+      alarm_clock_time:
+        value_template: >-
+          {{ states.sensor.alarm_clock_hour.state }}:
+          {%- if states.sensor.alarm_clock_minute.state|length == 1 -%}
+            0
+          {%- endif -%}
+            {{ states.sensor.alarm_clock_minute.state }}
+      alarm_clock_time_long:
+        value_template: >-
+          {% if states.sensor.alarm_clock_hour.state|length == 1 -%}
+            0
+          {%- endif -%}
+            {{ states.sensor.alarm_clock_hour.state }}:
+          {%- if states.sensor.alarm_clock_minute.state|length == 1 -%}
+            0
+          {%- endif -%}
+            {{ states.sensor.alarm_clock_minute.state }}
+
+automation:
+  - alias: Alarme
+    initial_state: true
+    hide_entity: true
+    trigger:
+      platform: template
+      value_template: '{{ states.sensor.time.state == states.sensor.alarm_clock_time_long.state }}'
+    condition:
+      condition: or
+      conditions:
+        - condition: and
+          conditions:
+            - condition: state
+              entity_id: input_boolean.alarm_clock_status
+              state: 'on'
+            - condition: state
+              entity_id: input_boolean.week_day_only
+              state: 'on'
+            - condition: time
+              weekday:
+                - mon
+                - tue
+                - wed
+                - thu
+                - fri
+        - condition: and
+          conditions:
+            - condition: state
+              entity_id: input_boolean.alarm_clock_status
+              state: 'on'
+            - condition: state
+              entity_id: input_boolean.week_day_only
+              state: 'off'
+    action:
+      service: script.wake_up
