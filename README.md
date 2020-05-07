@@ -8,7 +8,7 @@ Please feel free to let me know if you find any issues with my code, and/or have
 ## Ask for Coupouns and Discounts in Facebook Group "Descontos e Promoções"
 <p align="center">
   <a href="https://www.facebook.com/groups/descontosepromocoesgb/">
-    <img width="870" height="340" align="middle" src="https://scontent.flis8-1.fna.fbcdn.net/v/t31.0-8/27164747_333777823787976_7738718499708141467_o.jpg?oh=39309c25f0a2fc856f52a4d634b291c7&oe=5B0D00C1" title="Descontos e Promoções">
+    <img width="870" height="340" align="middle" src="https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/82214956_2967648106602869_8326028011509907456_o.jpg?_nc_cat=102&_nc_sid=ca434c&_nc_oc=AQmcf-JK9Lplb_c8W8bl0a7qk65EcCKRdrrjmbHPfRwvXYpFOG5gVXUdDYtwGy33MMo&_nc_ht=scontent.fopo2-1.fna&oh=a0516df3915c475f012e061e291c75fe&oe=5ED8F47B" title="Descontos e Promoções">
     <br>
     FB Group "Descontos e Promoções"
   </a>
